@@ -153,6 +153,25 @@
 
 ---
 
+## Iter 008 — 2026-07-07 — DIAGNOSIS: 생성기 클래스 구조 해독 (0.89로 가는 결정적 경로 발견)
+
+**질문**: 0.89를 뚫으려면 결정적으로 무엇이 필요한가?
+
+**게이트 수학**: 0.89 = focal ~97% + target·control 각 ~95% + 하위품질 ~90% 필요. 현재 target 39%/control 40%, dependent 게이트 통과 21%. **우회 불가 — target×control이 유일한 길.**
+
+**결정적 발견 (①→②→③ 연쇄)**:
+1. **`expected_events` args = 생성기 내부 "이유" 라벨이며 → control 100% 결정론** (n≥3 전부): `local_update`→proceed, `minimal_disclosure`/`redacted`→amend, `precondition_invalidated`→hold, `route_resolution_required`/`clarify_precondition`→ask.
+2. **이유 클래스가 answer 전체 골격을 결정**: control 100% + scope.mode 60~100% + plan verb열 100% + target 종류 50~95%. 즉 **task는 ~6개 시나리오 클래스에서 생성되고, 클래스가 정답 템플릿을 정한다.** 이게 0.89가 가능한 이유.
+3. **클래스 판별 신호는 prompt 절 구문 패밀리**("내부 업데이트로 끝내라/상태값만 갱신"=local_update, "깨졌으므로 멈춰야"=invalidated, "확정되지 않았으므로 먼저 확인"=confirm)이며 **screening에도 실재** (local_update 계열 136/700, redact 169/700, confirm 62/700, invalidated 37/700). Opus 세션의 마이닝 실패 원인 = 단일 토큰 단위로 봐서 구문 패밀리를 못 잡음.
+
+**결정적 계획 (0.89 경로)**:
+- **Phase 1 — 클래스 분류기**: dev 120 전 클래스의 절 표현을 구문 패밀리로 정리(순수 Python) + records 보조 신호(authority_incomplete 등) 결합 → held-out 클래스 정확도 측정. 클래스 정확도 ≈ control 정확도.
+- **Phase 2 — 클래스별 answer 템플릿**: 클래스 → (control, scope.mode, plan verb열+args, target 규칙) 방출. focal/route 구체값은 기존 marker 해석 재사용.
+- **Phase 3 — 클래스 내 세부**: allowed/excluded fields, plan args, policy flags를 클래스별 일반 규칙로.
+- 예상: 클래스 정확도 90% 달성 시 overall ~0.75+ (target 세부, policy F1이 잔여 갭).
+
+---
+
 ## Iter 004 — 2026-07-07 — REJECT (변경 없음)
 
 **catalog 항목:** `ask_precision`  ·  **지문:** `decide_control:ask_precision:surface_resolved_mismatch_or_relabel`
