@@ -133,6 +133,26 @@
 
 ---
 
+## Iter 003~007 — control 리버스 엔지니어링 종합 (전부 REJECT, 코드 변경 없음)
+
+리더보드 0.3295 확인 후, 본선 컷 0.89를 위해 control(다음 게이트)을 집중 해독 시도. **결론: control은 일반화 가능한 규칙으로 안 뚫림.** 소진한 접근:
+
+| 접근 | 결과 |
+| --- | --- |
+| 단일 record → control | ≤50% 순도 |
+| record 2~3개 / **full phase 조합** | 33~50% (동일 routing 상태가 4개 control 전부로 갈림) |
+| prompt 단일 토큰 / 키워드 사다리 | 44%→31% 악화 |
+| prompt 템플릿 lookup | dev↔screening 겹침 0 → 불가·과적합 |
+| **held-out 특징 마이닝 (순수 Python)** | 46±10% = 현행과 동일 (100% 순도 dev 신호는 과적합 아티팩트) |
+| phase 메커니즘 (`latest_phase_rule`, route_binding_order) | 비결정론 |
+| **prompt "단," 제약절 phrase 사다리** | 45.8% (현행 44.2%와 노이즈 내), 제약절 있는 task 52/120뿐 |
+
+**핵심 발견**: control 신호는 records/phase가 아니라 **prompt의 "단," 제약절 자연어 의미**에 있음(예: "실행하면 안 된다"→hold, "다시 확인하라는 지시"→ask). focal의 marker처럼 깔끔한 결정론 경로가 아니라 **정밀 NL 이해가 필요**하고, 고정 crude SLM + 규칙으로는 일반화 정확도를 못 냄. **모든 실패를 attempts에 기록해 재시도 차단.**
+
+**정직한 상태**: 이 harness 접근의 천장 ≈ control 44%, overall ~0.33. 0.89는 우리가 이번에 찾지 못한 결정론 키 또는 정밀 NL 파싱이 필요. baseline+focal marker(검증된 win)가 견고한 토대이자 정직한 도달점.
+
+---
+
 ## Iter 004 — 2026-07-07 — REJECT (변경 없음)
 
 **catalog 항목:** `ask_precision`  ·  **지문:** `decide_control:ask_precision:surface_resolved_mismatch_or_relabel`
