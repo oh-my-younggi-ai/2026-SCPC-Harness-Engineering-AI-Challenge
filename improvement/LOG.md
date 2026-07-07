@@ -9,7 +9,7 @@
 | focal 정확도 | 89.2% (107/120) |
 | 활성 규칙 수 (풀 크기) | 2 (marker_focal, control_ask) |
 | ratchet high-water (CV) | 0.3419 |
-| 누적 반복 수 | 2 |
+| 누적 반복 수 | 3 (2 KEEP, 1 REJECT) |
 | 최고 기록 (전체) | 0.3419 |
 
 **노이즈 관측(중요):** CV fold 표준편차 = **0.0358** (per-fold 0.043~0.136, 3배 스프레드). 즉 CV 기준 **~0.036 미만의 개선은 노이즈와 구분 불가**. 초기 focal 대형 개선은 이보다 크므로 감지 가능하지만, 미세 튜닝은 못 믿는다. → 포트폴리오 층(ablation/composition)은 이 노이즈 위에서 무의미하므로 **DEFERRED 유지**가 데이터로 확인됨.
@@ -103,5 +103,30 @@
 **결정:** KEEP — CV +0.053(노이즈 초과)·분산 감소·순 +15. downstream 3축 동반 상승. 다만 17 회귀는 미해결 신호 문제.
 
 **다음 후보 (Iter 003):** `infer_target` — target 0.392가 다음 게이트. focal-correct 107개 중 target 오답 상위: `memory_store`를 project_room/privacy_review 등으로 오예측(25+). `infer_target`이 memory_store를 `persistent_memory_write`에만 의존. memory/route target 신호 확장 필요. + (백로그) true-ask 17개 정밀 분리 신호 탐색.
+
+---
+
+## Iter 003 — 2026-07-07 — REJECT (변경 없음)
+
+**catalog 항목:** `target_memory_store`  ·  **지문:** `infer_target:memory_store:personal_note_or_prompt_keyword`
+
+**가설:** target 오답 최대 클러스터(memory_store 30개)를 focal type=personal_note / prompt 키워드(저장·메모리·기기 내부)로 잡으면 target↑.
+
+**진단(데이터):** memory_store는 record type으로 안 갈림(current_request_hint 등이 양쪽 공통). 신호는 prompt 의미 + personal_note focal(10/10). **둘 다 dev 편중**(personal_note dev 17.5% vs screening 4.9%; 키워드 dev 38% vs screening 26%).
+
+**실측(공짜 채점, 후보 4개):**
+
+| 후보 | overall | CV±σ | 판정 |
+| --- | --- | --- | --- |
+| baseline | 0.3419 | 0.3419±0.021 | — |
+| C1 personal_note→ms | 0.3404 | 0.3417±0.034 | overall↓, σ↑ |
+| C2 prompt키워드→ms | 0.3371 | 0.3375±0.033 | ↓ |
+| C3 둘다 | 0.3285 | 0.3305±0.046 | 더 나쁨 |
+
+**결정:** REJECT — 모든 후보가 overall 하락 + 분산 증가. target 축은 오르나 overall이 떨어짐(다른 축 파손). 신호도 dev 편중이라 screening transfer 없음. 코드 변경 없이 baseline 유지. **attempts에 기록해 재시도 차단.**
+
+**교훈:** 쉬운 지배-신호 win(marker, control-noise)은 소진됨. target/scope/policy는 깔끔한 기계적 규칙이 없는 다신호 판단 — 새 판별 신호(surface recipient vs resolved_target 불일치 등)를 찾아야 다음 진짜 win이 나온다. 무료 채점 덕에 dev만 고치는 함정을 코드 커밋 전에 걸러냄.
+
+**다음 후보:** 백로그 #2(진짜 ask 신호 — screening ambiguous_target 41%라 중요) 또는 여기서 매듭짓고 submission 확정.
 
 ---
