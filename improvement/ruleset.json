@@ -1,1 +1,21 @@
-{"rules": [{"id": "marker_focal", "target": "choose_focal", "signal": "focal_marker_refs", "enabled": true, "iter": 1, "test": "tests/test_marker_focal.py"}], "note": "Iter 001: marker/route focal resolution (inline in FinalHarness.choose_focal; 100% dev marker hit)."}
+{
+  "rules": [
+    {
+      "id": "marker_focal",
+      "target": "choose_focal",
+      "signal": "focal_marker_refs",
+      "enabled": true,
+      "iter": 1,
+      "test": "tests/test_marker_focal.py"
+    },
+    {
+      "id": "control_ask",
+      "target": "decide_control",
+      "signal": "control_ask",
+      "enabled": true,
+      "iter": 2,
+      "test": "tests/test_control_ask.py"
+    }
+  ],
+  "note": "Iter 001 marker_focal + Iter 002 control_ask (ask 트리거 정제)."
+}

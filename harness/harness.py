@@ -161,7 +161,10 @@ class FinalHarness:
             return "hold"
         if "consent" in types and any(word in values for word in ["revoked", "withdraw", "denied", "철회", "거부"]):
             return "hold"
-        if evidence.get("requires_confirmation") or any(t in types for t in ["ambiguous_target", "ambiguous_focal", "duration_ambiguous", "memory_conflict", "amount_changed", "merchant_verification", "routine_scope"]):
+        # ask는 "진짜 미해소" 신호에만. Iter 002: ambiguous_target/ambiguous_focal 라벨과
+        # SLM requires_confirmation(키워드 기반)은 ask/비-ask에 거의 무작위로 나타나 판별력이 없어
+        # ask를 남발시켰다(실측). 이들을 트리거에서 빼고, target_changed_after_turn을 추가한다.
+        if any(t in types for t in ["amount_changed", "merchant_verification", "duration_ambiguous", "memory_conflict", "target_changed_after_turn"]):
             return "ask"
         if evidence.get("requires_redaction") or any(t in types for t in ["external_share_policy", "share_scope", "payment_policy", "enterprise_policy_recall"]):
             return "amend"

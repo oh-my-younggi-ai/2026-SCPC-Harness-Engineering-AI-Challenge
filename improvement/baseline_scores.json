@@ -1,24 +1,24 @@
 {
-  "overall": 0.2911,
+  "overall": 0.3419,
   "n": 120,
   "axes": {
     "focal": 0.8917,
     "target": 0.3917,
-    "control": 0.275,
-    "content_scope": 0.0697,
-    "policy": 0.0617,
-    "plan": 0.0792,
+    "control": 0.4,
+    "content_scope": 0.1342,
+    "policy": 0.1185,
+    "plan": 0.1345,
     "semantic_response": 0.0,
     "counterfactual": 0.0
   },
   "cv": {
     "k": 5,
     "per_fold_overall": {
-      "0": 0.3154,
-      "1": 0.2577,
-      "2": 0.3328,
-      "3": 0.298,
-      "4": 0.2429
+      "0": 0.3424,
+      "1": 0.3272,
+      "2": 0.3658,
+      "3": 0.3098,
+      "4": 0.3642
     },
     "fold_sizes": {
       "0": 27,
@@ -27,8 +27,8 @@
       "3": 22,
       "4": 21
     },
-    "cv_mean": 0.2894,
-    "cv_std": 0.0341
+    "cv_mean": 0.3419,
+    "cv_std": 0.0215
   },
   "rows": [
     {
@@ -75,11 +75,11 @@
     },
     {
       "task_id": "final_dev_7286d93e3d0f",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -159,11 +159,11 @@
     },
     {
       "task_id": "final_dev_a68a2ffee739",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -201,14 +201,14 @@
     },
     {
       "task_id": "final_dev_8c822ace8ed7",
-      "score": 0.3,
+      "score": 0.61015,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.225,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -243,11 +243,11 @@
     },
     {
       "task_id": "final_dev_891dd2e62a0a",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -257,28 +257,28 @@
     },
     {
       "task_id": "final_dev_031befc84332",
-      "score": 0.3,
+      "score": 0.86765,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.875,
+        "policy": 0.73,
+        "plan": 0.7999999999999999,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_b0696e0a0b55",
-      "score": 0.3,
+      "score": 0.6314,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.35,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -299,25 +299,25 @@
     },
     {
       "task_id": "final_dev_0ad44d955594",
-      "score": 0.7792142857142857,
+      "score": 0.3,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.5,
-        "policy": 0.6785714285714286,
-        "plan": 0.7,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_5eb14d5077e8",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -341,11 +341,11 @@
     },
     {
       "task_id": "final_dev_8333135df1f1",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -453,11 +453,11 @@
     },
     {
       "task_id": "final_dev_d6207345eca9",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -495,11 +495,11 @@
     },
     {
       "task_id": "final_dev_a553e284342b",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -509,11 +509,11 @@
     },
     {
       "task_id": "final_dev_781f8cf29ff8",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -523,25 +523,25 @@
     },
     {
       "task_id": "final_dev_0a50781a4b36",
-      "score": 0.6945,
+      "score": 0.3,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.1,
-        "policy": 0.55,
-        "plan": 0.7,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_bce8783d4e90",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -621,34 +621,6 @@
     },
     {
       "task_id": "final_dev_8ed40b9da45c",
-      "score": 0.18,
-      "axes": {
-        "focal": 1.0,
-        "target": 0.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
-        "semantic_response": 0.0,
-        "counterfactual": 0.0
-      }
-    },
-    {
-      "task_id": "final_dev_7673439ee315",
-      "score": 0.3,
-      "axes": {
-        "focal": 1.0,
-        "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
-        "semantic_response": 0.0,
-        "counterfactual": 0.0
-      }
-    },
-    {
-      "task_id": "final_dev_e77230d2cdd2",
       "score": 0.36,
       "axes": {
         "focal": 1.0,
@@ -662,21 +634,63 @@
       }
     },
     {
-      "task_id": "final_dev_2ae575b2504d",
-      "score": 0.3,
+      "task_id": "final_dev_7673439ee315",
+      "score": 0.8734999999999999,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
+        "control": 1.0,
+        "content_scope": 0.875,
+        "policy": 0.7749999999999999,
+        "plan": 0.7999999999999999,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_e77230d2cdd2",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
         "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_2ae575b2504d",
+      "score": 0.86375,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 0.875,
+        "policy": 0.7,
+        "plan": 0.7999999999999999,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_d14241488a02",
+      "score": 0.8956785714285714,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 0.875,
+        "policy": 0.8071428571428572,
+        "plan": 0.9,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_681d2e291ea5",
       "score": 0.3,
       "axes": {
         "focal": 1.0,
@@ -685,20 +699,6 @@
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
-        "semantic_response": 0.0,
-        "counterfactual": 0.0
-      }
-    },
-    {
-      "task_id": "final_dev_681d2e291ea5",
-      "score": 0.709125,
-      "axes": {
-        "focal": 1.0,
-        "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.1,
-        "policy": 0.6625,
-        "plan": 0.7,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -719,11 +719,11 @@
     },
     {
       "task_id": "final_dev_cdac00864e27",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -761,28 +761,28 @@
     },
     {
       "task_id": "final_dev_2b6c7dc70c0b",
-      "score": 0.3,
+      "score": 0.7382,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.30000000000000004,
+        "policy": 0.5,
+        "plan": 0.79,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_0fe9e41df4e3",
-      "score": 0.3,
+      "score": 0.7447,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.30000000000000004,
+        "policy": 0.55,
+        "plan": 0.79,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -873,14 +873,14 @@
     },
     {
       "task_id": "final_dev_bf318c4595e7",
-      "score": 0.3,
+      "score": 0.61015,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.225,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -943,11 +943,11 @@
     },
     {
       "task_id": "final_dev_f37da1ee0f34",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -971,11 +971,11 @@
     },
     {
       "task_id": "final_dev_511b1dc0b84d",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -999,11 +999,11 @@
     },
     {
       "task_id": "final_dev_5181075801a4",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1027,11 +1027,11 @@
     },
     {
       "task_id": "final_dev_5045d307260d",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1041,14 +1041,14 @@
     },
     {
       "task_id": "final_dev_8af3369d4151",
-      "score": 0.739547619047619,
+      "score": 0.3,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.26666666666666666,
-        "policy": 0.6785714285714286,
-        "plan": 0.7,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1083,11 +1083,11 @@
     },
     {
       "task_id": "final_dev_8e91760c80a6",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1097,11 +1097,11 @@
     },
     {
       "task_id": "final_dev_30fbd7c1c106",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1139,14 +1139,14 @@
     },
     {
       "task_id": "final_dev_a976a641dd5a",
-      "score": 0.777125,
+      "score": 0.3,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.5,
-        "policy": 0.6625,
-        "plan": 0.7,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1195,14 +1195,14 @@
     },
     {
       "task_id": "final_dev_12639be2a272",
-      "score": 0.3,
+      "score": 0.6314,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.35,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1223,11 +1223,11 @@
     },
     {
       "task_id": "final_dev_1ada8b6f857e",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1237,14 +1237,14 @@
     },
     {
       "task_id": "final_dev_6a751981ca6a",
-      "score": 0.3,
+      "score": 0.83775,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.625,
+        "policy": 0.55,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1279,11 +1279,11 @@
     },
     {
       "task_id": "final_dev_c2ab61cbcfa6",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1293,11 +1293,11 @@
     },
     {
       "task_id": "final_dev_8972f1090f6b",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1307,11 +1307,11 @@
     },
     {
       "task_id": "final_dev_d8e8e2e9ef0f",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1377,14 +1377,14 @@
     },
     {
       "task_id": "final_dev_1d6606209a76",
-      "score": 0.3,
+      "score": 0.7382,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.30000000000000004,
+        "policy": 0.5,
+        "plan": 0.79,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1405,14 +1405,14 @@
     },
     {
       "task_id": "final_dev_b994918288e9",
-      "score": 0.7625,
+      "score": 0.3,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 1.0,
-        "content_scope": 0.5,
-        "policy": 0.55,
-        "plan": 0.7,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1433,11 +1433,11 @@
     },
     {
       "task_id": "final_dev_5700ad3a5bb3",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1447,11 +1447,11 @@
     },
     {
       "task_id": "final_dev_5878934172ec",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1475,25 +1475,25 @@
     },
     {
       "task_id": "final_dev_45f236dfb129",
-      "score": 0.3,
+      "score": 0.86765,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.875,
+        "policy": 0.73,
+        "plan": 0.7999999999999999,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
     },
     {
       "task_id": "final_dev_c501d88d2313",
-      "score": 0.36,
+      "score": 0.18,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 1.0,
+        "control": 0.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1503,14 +1503,14 @@
     },
     {
       "task_id": "final_dev_aca57c383d4c",
-      "score": 0.3,
+      "score": 0.83775,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.625,
+        "policy": 0.55,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1601,11 +1601,11 @@
     },
     {
       "task_id": "final_dev_b350a6b5a5ff",
-      "score": 0.18,
+      "score": 0.36,
       "axes": {
         "focal": 1.0,
         "target": 0.0,
-        "control": 0.0,
+        "control": 1.0,
         "content_scope": 0.0,
         "policy": 0.0,
         "plan": 0.0,
@@ -1629,14 +1629,14 @@
     },
     {
       "task_id": "final_dev_3d0fa3a65dc7",
-      "score": 0.3,
+      "score": 0.8795785714285714,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.8392857142857143,
+        "policy": 0.73,
+        "plan": 0.9,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1671,14 +1671,14 @@
     },
     {
       "task_id": "final_dev_1b6370d22e60",
-      "score": 0.3,
+      "score": 0.8795785714285714,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.8392857142857143,
+        "policy": 0.73,
+        "plan": 0.9,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1699,14 +1699,14 @@
     },
     {
       "task_id": "final_dev_d2a3fd50f334",
-      "score": 0.3,
+      "score": 0.6314,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 0.35,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
