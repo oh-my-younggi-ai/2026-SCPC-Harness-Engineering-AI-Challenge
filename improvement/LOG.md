@@ -4,11 +4,11 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | 0.3419 |
-| CV 일반화 평균±표준편차 | 0.3419 ± 0.0215 (k=5) |
+| 현재 overall (전체) | **0.6496** |
+| CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | 89.2% (107/120) |
-| 활성 규칙 수 (풀 크기) | 2 (marker_focal, control_ask) |
-| ratchet high-water (CV) | 0.3419 |
+| 활성 규칙 수 (풀 크기) | 3 (marker_focal, control_ask, class_decoder) |
+| ratchet high-water (CV) | 0.6498 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -169,6 +169,33 @@
 - **Phase 2 — 클래스별 answer 템플릿**: 클래스 → (control, scope.mode, plan verb열+args, target 규칙) 방출. focal/route 구체값은 기존 marker 해석 재사용.
 - **Phase 3 — 클래스 내 세부**: allowed/excluded fields, plan args, policy flags를 클래스별 일반 규칙로.
 - 예상: 클래스 정확도 90% 달성 시 overall ~0.75+ (target 세부, policy F1이 잔여 갭).
+
+---
+
+## Iter 009 — 2026-07-07 — KEEP (클래스 디코더 + 템플릿: 0.342 → 0.650)
+
+**catalog 항목:** `generator_class`  ·  **지문:** `answer_task:scenario_class_decoder:clause_families_plus_records_plus_templates`
+
+**구현 (Phase 1+2):**
+- `classify_task`: "단," 절 구문 패밀리(최우선: local/invalid/confirm/redact 4계열) → 절 없으면 record 신호(안전/consent→hold, persistent_memory_write→local, target_changed·memory_conflict 등→ask, user_binding_pending+dispatch_blocked→hold, authority_incomplete→ask, external_share_policy·strict→minimal). **클래스→control 정확도 86.7%** (현행 44.2%).
+- 클래스별 answer 템플릿: dev에서 클래스별 결정론 확인 후 방출 — scope(allowed/excluded/ruc), policy(flags 조합식+violations), plan verb열+args (local: read/verify/update 40/40 동일, invalid: read/guard 20/20 등). target 규칙: local→memory_store, ask→user, 그 외→resolved_target→recipient.
+- 핵심 방법론 교정: **이전 record 순도 분석이 실패한 건 절 있는 task가 섞여서** — 절이 record를 override하므로 절 없는 부분집합에서 record 매핑이 순수해짐(persistent_memory_write→local 100%, target_changed→ask 100%, safety/consent→hold 100%).
+
+**점수 변화:**
+
+| 축 | before | after | Δ |
+| --- | --- | --- | --- |
+| overall (전체) | 0.3419 | **0.6496** | **+0.3077** |
+| CV 일반화 평균 | 0.3419 | 0.6498 | +0.3079 (노이즈의 ~10배) |
+| target | 0.3917 | 0.6833 | +0.29 |
+| control | 0.4000 | 0.7583 | +0.36 |
+| content_scope | 0.1342 | 0.5563 | +0.42 |
+| policy | 0.1185 | 0.5404 | +0.42 |
+| plan | 0.1345 | 0.5878 | +0.45 |
+
+**task 영향:** 고침 +80 / 깨짐 −9 (순 +71) · 테스트 3종 green (`test_class_decoder.py` 추가) · 래칫 0.342→0.650
+
+**다음 병목:** ① focal 89.2%가 이제 하드캡(13개 miss — marker 없는 다후보 task) ② 클래스 오분류 잔여 16개(internal_binding 계열 애매) ③ ask의 target(user 42%뿐) ④ scope/policy 세부 F1. 상위권 0.89까지 잔여 갭 ~0.24.
 
 ---
 
