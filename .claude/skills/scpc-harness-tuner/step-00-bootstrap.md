@@ -52,7 +52,8 @@ import 관계를 맞춘다: `harness.py`는 `slm`, `io_utils`, `constants`에서
   - `--cv 5`: k-fold CV 실행(기본 켬).
   - `--segments`: 세그먼트 강점행렬 출력.
   - `--ruleset <cfg>`: 특정 규칙 조합으로 실행.
-  - `--ablate`: 활성 규칙 각각을 off로 토글해 CV로 돌리고 한계기여를 세그먼트별로 출력(consolidation용, 비쌀 수 있음).
+  - `--ablate`: 활성 규칙 각각을 off로 토글해 CV로 돌리고 한계기여를 세그먼트별로 출력. **규칙마다 fold별 델타와 부호 일관성(n/5), 노이즈 플로어 초과 여부 플래그를 함께** 낸다(신뢰 테스트용). consolidation용, 비쌀 수 있음.
+  - `--readiness`: 포트폴리오 층 활성화 게이트를 계산해 `{"portfolio_ready": bool, "gates": {...}, "noise_floor": <fold std>}` 출력. 게이트: `active_rules ≥ {min_active_rules}`, `focal_mean ≥ {focal_gate}`, `supported_segments ≥ 1`(support ≥ `{min_support}`). 각 게이트의 현재값·통과여부 포함.
   - `--submission`: `data/screening_tasks.jsonl` 700개로 답안 생성 → `{project_root}/submission.csv`. meta.seed=**42**(OVERVIEW §9).
 
 CLI 예: `python run_local.py --cv 5 --json out.json`(채점+저장), `python run_local.py --ablate --json ablate.json`(프로파일링), `python run_local.py --ruleset cand.json`(조합 실험), `python run_local.py --submission`(제출).

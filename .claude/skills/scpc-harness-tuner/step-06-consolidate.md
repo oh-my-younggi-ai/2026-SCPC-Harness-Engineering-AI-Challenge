@@ -12,7 +12,12 @@ ablation_out: '{track_dir}/ablation-latest.json'
 - 출력 언어는 항상 `{communication_language}`.
 - **가정 금지, 측정만**: "이 규칙이 좋을 것"이 아니라 CV·ablation 실측으로 판단.
 - 포트폴리오 변경도 **래칫(CV 일반화)·축적 테스트 하드 게이트**를 통과해야 채택.
-- 과적합 가드레일: 최소 지지(support) 미만 세그먼트로는 판단하지 않는다. fold 간 불안정한 기여는 신뢰하지 않는다.
+- **신뢰 테스트(자동)**: 모든 ablation/composition 결정은 **fold 부호 일관성 ≥ `{sign_consistency}`/5** 이고 **효과 > 노이즈 플로어(baseline held-out overall의 fold 표준편차 × `{snr_k}`)** 일 때만 신뢰한다. 둘 중 하나라도 실패하면 그 효과는 노이즈로 간주해 **자동 기각**(keep/route/bench 판단에 쓰지 않는다). 사람 눈대중 금지.
+- 세그먼트 판단은 support ≥ `{min_support}` 일 때만.
+
+## PRECONDITION — 활성화 게이트 재확인
+
+`python {code_dir}/run_local.py --readiness --json {track_dir}/readiness.json` 를 실행해 `portfolio_ready == true` 인지 확인한다. `false`면 (step-05에서 걸러졌어야 하지만) 여기서 **즉시 종료**하고 린 코어(step-01)로 돌아간다. 전제조건 미달 상태에서 ablation/composition을 돌리지 않는다.
 
 ## INSTRUCTIONS
 

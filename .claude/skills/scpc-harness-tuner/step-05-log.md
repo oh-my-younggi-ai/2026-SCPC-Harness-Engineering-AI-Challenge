@@ -37,9 +37,16 @@ LOG 상단 표를 갱신: 현재 overall(전체)·CV 일반화 평균, **coverag
 
 한 줄 결론(예: "consent_revoked 규칙 추가 → overall +0.045, CV +0.03, coverage 24%→27%, KEEP") + 델타 표(overall 전체·CV 일반화, 주요 axes) + 누적 진척(Iter 000 대비 현재, coverage % 추이).
 
-### 5. Consolidation 시점 판단 (⑧ — `{compose_every}`반복마다 자동)
+### 5. Consolidation 자동 게이트 판정 (⑧ — 사람이 판단하지 않음)
 
-`{attempts}`의 누적 KEEP 반복 수를 센다. **`{compose_every}`(=3)의 배수에 도달했으면** 다음은 일반 반복이 아니라 **consolidation**이다: 사람에게 "3반복 경과 → 강점 재조합(step-06)을 돌립니다"라고 알리고, 이어가면 read fully and follow `./step-06-consolidate.md`.
+`{attempts}`의 누적 KEEP 반복 수를 센다. **`{compose_every}`(=3)의 배수에 도달했으면** 포트폴리오 층 활성화 여부를 **자동 게이트**로 판정한다:
+
+`python {code_dir}/run_local.py --readiness --json {track_dir}/readiness.json` 실행 → `portfolio_ready`와 게이트별 통과/실패를 읽는다.
+
+- **`portfolio_ready == true`**(규칙 수·focal 게이트·세그먼트 지지 모두 통과): 다음은 consolidation이다. 사람에게 "게이트 통과 → 강점 재조합(step-06)"을 알리고, 이어가면 read fully and follow `./step-06-consolidate.md`.
+- **`false`**: 포트폴리오 층 **자동 보류(DEFERRED)**. 실패한 게이트(예: `active_rules=3 < 5`)를 LOG에 한 줄 남기고, 린 코어를 계속 돈다(step-01로). 사람의 판단을 요구하지 않는다.
+
+배수가 아니면 이 절을 건너뛴다.
 
 ### 6. 다음 반복 안내
 
