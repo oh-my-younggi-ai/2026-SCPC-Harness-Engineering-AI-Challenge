@@ -1,1 +1,2 @@
 {"iter": 0, "kind": "baseline", "decision": "baseline", "overall": 0.0882, "cv_mean": 0.088, "note": "notebook verbatim extraction; reproducibility verified"}
+{"iter": 1, "kind": "improve", "fingerprint": "choose_focal:focal_marker_refs:marker_route_resolution", "signal_id": "focal_marker_refs", "rule_summary": "resolve focal via latest_phase->marker->ref_code->object", "decision": "KEEP", "overall": 0.2911, "cv_mean": 0.2894, "delta_all": 0.2029, "delta_cv": 0.2014}

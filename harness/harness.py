@@ -65,11 +65,42 @@ class FinalHarness:
                     self.memory[key] = value
         session["last_evidence"] = evidence
 
+    def _resolve_marker_focal(self, task: dict[str, Any], objects: list[dict[str, Any]]) -> dict[str, Any] | None:
+        """마커 간접참조로 focal 해석 (TERMS_GUIDE focal_marker_refs).
+
+        경로: focal_resolution_trace.latest_phase -> phase_to_marker[phase] -> marker
+        -> focal_marker_refs.marker_to_ref[marker] -> ref_code -> attrs.ref_code 일치 object.
+        일반화 규칙(특정 task 하드코딩 아님). 마커 신호가 없으면 None.
+        """
+        rec = record_map(records_of(task))
+        refs = rec.get("focal_marker_refs")
+        trace = rec.get("focal_resolution_trace")
+        if not isinstance(refs, dict) or not isinstance(trace, dict):
+            return None
+        marker_to_ref = refs.get("marker_to_ref")
+        phase_to_marker = trace.get("phase_to_marker")
+        if not isinstance(marker_to_ref, dict) or not isinstance(phase_to_marker, dict):
+            return None
+        phase = trace.get("latest_phase")
+        marker = phase_to_marker.get(phase) if phase is not None else None
+        ref_code = marker_to_ref.get(marker) if marker is not None else None
+        if not ref_code:
+            return None
+        for obj in objects:
+            if str((obj.get("attrs") or {}).get("ref_code")) == str(ref_code):
+                return obj
+        return None
+
     def choose_focal(self, task: dict[str, Any], session: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
         objects = objects_of(task)
         records = records_of(task)
         if not objects:
             return {}
+
+        # 0) 마커 간접참조가 있으면 그것이 focal의 권위 있는 신호다.
+        marker_focal = self._resolve_marker_focal(task, objects)
+        if marker_focal is not None:
+            return marker_focal
 
         object_by_id = {str(o.get("id")): o for o in objects}
         for record in reversed(records):

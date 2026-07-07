@@ -1,1 +1,1 @@
-{"rules": [], "note": "baseline은 FinalHarness 내장 로직. 규칙 추출은 Iter 001부터(marker focal)."}
+{"rules": [{"id": "marker_focal", "target": "choose_focal", "signal": "focal_marker_refs", "enabled": true, "iter": 1, "test": "tests/test_marker_focal.py"}], "note": "Iter 001: marker/route focal resolution (inline in FinalHarness.choose_focal; 100% dev marker hit)."}
