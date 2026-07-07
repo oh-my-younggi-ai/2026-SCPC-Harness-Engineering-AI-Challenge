@@ -1,0 +1,1715 @@
+{
+  "overall": 0.0882,
+  "n": 120,
+  "axes": {
+    "focal": 0.2917,
+    "target": 0.1167,
+    "control": 0.0833,
+    "content_scope": 0.0196,
+    "policy": 0.0087,
+    "plan": 0.0126,
+    "semantic_response": 0.0,
+    "counterfactual": 0.0
+  },
+  "cv": {
+    "k": 5,
+    "per_fold_overall": {
+      "0": 0.0865,
+      "1": 0.0552,
+      "2": 0.1189,
+      "3": 0.1364,
+      "4": 0.0429
+    },
+    "fold_sizes": {
+      "0": 27,
+      "1": 25,
+      "2": 25,
+      "3": 22,
+      "4": 21
+    },
+    "cv_mean": 0.088,
+    "cv_std": 0.0358
+  },
+  "rows": [
+    {
+      "task_id": "final_dev_e55d2c79fb78",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0ab2e0715082",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_58561a55ab03",
+      "score": 0.6314,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 0.35,
+        "policy": 0.55,
+        "plan": 0.11333333333333331,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_7286d93e3d0f",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8003c2e5b525",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_31fb29f3b379",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_fb72c9a3a34f",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_88dbbfd07f1e",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_6903fe98eb6a",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_a68a2ffee739",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_cbe66375d386",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_083ee82f08f6",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8c822ace8ed7",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_3541b9ea68b2",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_e2d9ef5482ca",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_891dd2e62a0a",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_031befc84332",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_b0696e0a0b55",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0bd3e2e64880",
+      "score": 0.8137,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 0.29000000000000004,
+        "plan": 0.7,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0ad44d955594",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5eb14d5077e8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_1dbd7642dad4",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8333135df1f1",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_30bfc3bff278",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5ebf0fd867b8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_c9f7b31ab1b9",
+      "score": 0.802,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 0.2,
+        "plan": 0.7,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_ee7445ff0498",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_6f0438c6b0f9",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_503d60ca6a8b",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_7efad6a5e982",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_d6207345eca9",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_82d825a8b9fe",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_877513d47adf",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_a553e284342b",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_781f8cf29ff8",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0a50781a4b36",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_bce8783d4e90",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_dc0a354b8f1c",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_da3ac38b44e9",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_34fff7b8fbb4",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_470a3f62791a",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_98d75f0ae7d2",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8ed40b9da45c",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_7673439ee315",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_e77230d2cdd2",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_2ae575b2504d",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_d14241488a02",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_681d2e291ea5",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_1d36a1e14d07",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_cdac00864e27",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_ccb58d8b17ed",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_db61d15fdaf8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_2b6c7dc70c0b",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0fe9e41df4e3",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_20a0410a686c",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_f6e4b09bc2be",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_74e9adcb30d8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_63b045fbedd5",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_b9cdd360f6f6",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8b4bcd0d1a7d",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_bf318c4595e7",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_df50f6c22034",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_cf4f02fecf71",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_ffb175c36edb",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_40d2ea8c798a",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_f37da1ee0f34",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_022985565adb",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_511b1dc0b84d",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_fbc400dbafb5",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5181075801a4",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_9a5d8fa4a44e",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5045d307260d",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8af3369d4151",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_935d6c50ab4f",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0937ccedef94",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8e91760c80a6",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_30fbd7c1c106",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_11f8e6453590",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_dac80867fdb3",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_a976a641dd5a",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_44be04c1d10d",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_bd0afd95da5a",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_4c7b4769ff4f",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_12639be2a272",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_bc1e503a1eb5",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_1ada8b6f857e",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_6a751981ca6a",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_a37574dce77c",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_f40e956fa5cd",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_c2ab61cbcfa6",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_8972f1090f6b",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_d8e8e2e9ef0f",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_25d2f58cdc0b",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_dc965f4f63a7",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_70956564fac6",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_a7f2a443f654",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_1d6606209a76",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_9243708d199e",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_b994918288e9",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_af97f72e06f1",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5700ad3a5bb3",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_5878934172ec",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_0d86d56ce4d1",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_45f236dfb129",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_c501d88d2313",
+      "score": 0.36,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 1.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_aca57c383d4c",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_c5465166b830",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_2058f16886e1",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_208d83525bfe",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_ad714e86abd9",
+      "score": 0.18,
+      "axes": {
+        "focal": 1.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_b3a413797838",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_6dd1a9d6ebcc",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_b350a6b5a5ff",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_7add02f9e8b8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_3d0fa3a65dc7",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_e62ca24413a8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_fbf3d59d7fe8",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_1b6370d22e60",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_78e9ac7e4944",
+      "score": 0.0,
+      "axes": {
+        "focal": 0.0,
+        "target": 0.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    },
+    {
+      "task_id": "final_dev_d2a3fd50f334",
+      "score": 0.3,
+      "axes": {
+        "focal": 1.0,
+        "target": 1.0,
+        "control": 0.0,
+        "content_scope": 0.0,
+        "policy": 0.0,
+        "plan": 0.0,
+        "semantic_response": 0.0,
+        "counterfactual": 0.0
+      }
+    }
+  ]
+}
