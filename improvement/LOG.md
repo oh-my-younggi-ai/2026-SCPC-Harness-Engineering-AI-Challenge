@@ -9,7 +9,7 @@
 | focal 정확도 | 89.2% (107/120) |
 | 활성 규칙 수 (풀 크기) | 2 (marker_focal, control_ask) |
 | ratchet high-water (CV) | 0.3419 |
-| 누적 반복 수 | 3 (2 KEEP, 1 REJECT) |
+| 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (전체) | 0.3419 |
 
 **노이즈 관측(중요):** CV fold 표준편차 = **0.0358** (per-fold 0.043~0.136, 3배 스프레드). 즉 CV 기준 **~0.036 미만의 개선은 노이즈와 구분 불가**. 초기 focal 대형 개선은 이보다 크므로 감지 가능하지만, 미세 튜닝은 못 믿는다. → 포트폴리오 층(ablation/composition)은 이 노이즈 위에서 무의미하므로 **DEFERRED 유지**가 데이터로 확인됨.
@@ -128,5 +128,19 @@
 **교훈:** 쉬운 지배-신호 win(marker, control-noise)은 소진됨. target/scope/policy는 깔끔한 기계적 규칙이 없는 다신호 판단 — 새 판별 신호(surface recipient vs resolved_target 불일치 등)를 찾아야 다음 진짜 win이 나온다. 무료 채점 덕에 dev만 고치는 함정을 코드 커밋 전에 걸러냄.
 
 **다음 후보:** 백로그 #2(진짜 ask 신호 — screening ambiguous_target 41%라 중요) 또는 여기서 매듭짓고 submission 확정.
+
+---
+
+## Iter 004 — 2026-07-07 — REJECT (변경 없음)
+
+**catalog 항목:** `ask_precision`  ·  **지문:** `decide_control:ask_precision:surface_resolved_mismatch_or_relabel`
+
+**가설:** Iter 002서 잃은 true-ask 17개를 새 신호로 복구(표면 recipient vs resolved_target 불일치 등).
+
+**실측:** (1) 불일치 신호는 판별 실패(TP=2/FP=6). (2) 전 record type 전수 스캔: ask에 100% 집중되는 건 `target_changed_after_turn`뿐인데 **이미 Iter 002서 사용 중**. 나머지 최선이 ambiguous_focal 40%(6/15) — 순 음성. ask 기저율 22%(24/107)를 어떤 특징도 못 모음.
+
+**결정:** REJECT — 사용 가능한 신호로 ask는 분리 불가. 코드 변경 없음. attempts 기록.
+
+**결론(플래토 도달):** 깔끔한 지배-신호 win 2개(marker focal, control ask-noise) 소진. target·ask는 같은 표면 신호가 다른 정답으로 갈리는 다신호 판단이라 120-task·노이즈 0.02~0.03 환경에서 클린 룰이 안 나옴. 추가 이득은 (a) 더 정교한 다신호 모델링(120개서 과적합 위험) 또는 (b) 새 파생 특징 발굴 필요. **현 상태(0.342, transfer되는 win 2개)가 자연스러운 매듭.**
 
 ---
