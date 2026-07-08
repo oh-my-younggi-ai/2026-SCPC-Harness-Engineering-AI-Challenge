@@ -169,7 +169,7 @@ class FinalHarness:
             "content_scope": content_scope,
             "policy": policy,
             "plan_events": plan_events,
-            "user_response": self.user_response(control, target),
+            "user_response": self.user_response(cls, control, target, content_scope),
             "audit_tags": evidence.get("audit_tags", []),
             "counterfactual": "최신 기록, 동의 상태, 공유 범위, 보안 신호가 바뀌면 판단이 달라질 수 있습니다.",
         }
@@ -468,11 +468,15 @@ class FinalHarness:
             {"verb": "dispatch", "target": target, "args": {"scope": "raw"}},
         ]
 
-    def user_response(self, control: str, target: str) -> str:
-        if control == "hold":
-            return "보안, 동의 또는 정책 조건 때문에 진행하지 않겠습니다."
-        if control == "ask":
-            return "대상이나 허용 범위를 한 번 더 확인해야 합니다."
-        if control == "amend":
-            return f"민감 정보를 제외하고 {target}(으)로 진행하겠습니다."
-        return f"요청한 범위로 {target}(으)로 진행하겠습니다."
+    def user_response(self, cls: str, control: str, target: str, scope: dict[str, Any]) -> str:
+        # 판단 내용을 구체적으로 서술 (semantic_response는 서버에서만 채점되므로 클래스 의미에 정렬)
+        if cls == CLASS_LOCAL:
+            return "외부로 보내지 않고 기기 내부 상태만 갱신했습니다."
+        if cls == CLASS_INVALID:
+            return "이전 허용의 전제가 무효화되어 실행을 보류합니다. 추가 확인 전에는 진행하지 않습니다."
+        if cls == CLASS_ASK:
+            return "대상과 처리 범위가 확정되지 않아 진행 전에 사용자 확인이 필요합니다."
+        if cls == CLASS_MINIMAL:
+            excluded = ", ".join(scope.get("excluded_fields", [])) or "민감 정보"
+            return f"{excluded}을(를) 제외한 요약만 {target}(으)로 공유합니다."
+        return f"요청한 범위 그대로 {target}(으)로 진행합니다."

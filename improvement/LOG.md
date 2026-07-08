@@ -342,3 +342,9 @@ dev 검증된 결정론 규칙 3개 (bake-off로 채택, +22/−0):
 - 궤적: 0.3295 → 0.3442 → 0.583 → 0.6837 → **0.7933**
 - **dev-LB 갭 0.08 → 0.037로 축소** — hold 중단-원천 규칙(015)·doctor_note/guardrail 분리(017)·세부 규칙들이 screening에 그대로 transfer. 로컬 채점이 semantic_response(0.04)를 0 처리하는 걸 감안하면 실질 갭은 더 작을 수 있음.
 - 본선 컷 0.89까지 잔여 **0.097**. dev 천장(0.8303)을 올리는 것과 semantic_response(로컬 미측정 0.04)가 남은 레버.
+
+---
+
+## Iter 019 — 2026-07-08 — KEEP (user_response 클래스 정렬; dev 불변)
+
+semantic_response(서버 전용 0.04)를 겨냥해 `user_response`를 클래스별 판단 서술로 교체(전제 무효화/내부 갱신/요약 공유/확인 필요를 구체 서술). 로컬 측정 불가 — 리더보드로만 검증. + ask mode 3분은 중단원천×boundary×sensitive 각도로도 신호 부재 재확인(다수결 summary 유지).
