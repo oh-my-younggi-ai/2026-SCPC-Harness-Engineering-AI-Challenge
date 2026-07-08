@@ -14,17 +14,16 @@
 - user_response를 클래스별 판단 서술로 교체함. **다음 제출에서 효과 분리 측정** (이번 제출의 유일한 변경).
 - 오르면: 참조 응답 스타일에 더 정렬(간결/상세 변형 실험). 안 오르면 접기.
 
-### 2. transfer 갭 0.037 축소 (screening 쪽)
-- 로컬 검증 불가 영역. 각도: (a) 절-없는 screening 38%의 fallback 분기 분포를 dev와 재대조 (b) history_focal/hold 규칙의 screening 발화율 재점검 (c) screening 절 paraphrase 신규 유형 감시(생성기가 dev에 없는 계열을 쓸 가능성).
+### 2. transfer 갭 0.037 — 재감사 완료(07-08 저녁), 구조 이상 없음
+- 미매칭 절 0 · history_focal 237발화 · doctor_note 58/auth+guardrail 49 발화(dev 비례) · 분포 정합. **로컬에서 더 할 것 없음** — 잔여 갭은 semantic(0.04)과 클래스 잔여의 screening 버전 추정.
 
-### 3. plan 세부 (dev .81)
-- 게이트-내 plan 손실 재진단 (verb열은 거의 정답 — args pair/value 단위 F1과 이벤트 target 문자열 잔여).
-- verify 이벤트의 target 문자열('share_boundary_update') 계열이 클래스별로 맞는지 전수 재확인.
+### 3. ~~plan 세부~~ → 소진 확인 (07-08 저녁)
+- 게이트-내 plan 손실 = ask 하위이유 args 6건 + verb 2 + len 2뿐. 사실상 천장.
 
-### 4. scope allowed_fields 변형 (dev .79)
-- other 클래스 allowed ['summary','title']→['summary'] 2건 등 미세 변형. n 작음.
+### 4. ~~scope allowed~~ → n=2 잔여, 스킵
 
 ## 신호 부재 확정 (재시도 금지 — attempts 참조)
+- **ask 하위이유** (route vs precondition_changed, n=26): 중단원천×전제어휘 불분리. 다수결 route 유지. [07-08 확정]
 - **ask mode 3분** (summary/redacted/none, n=23): 중단원천×boundary×sensitive 각도까지 소진. 다수결 summary 유지.
 - **클래스 잔여 12**: 동일 신호→다른 클래스. payment/enterprise/ops recall류는 screening 2/700이라 스킵이 정답.
 - **precondition_changed flag**: guardrail P=0.57 불충분.
