@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.7365** (dev) |
+| 현재 overall (전체) | **0.7641** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | **100%** (120/120) |
-| 활성 규칙 수 (풀 크기) | 4 (+history_focal) |
-| ratchet high-water (CV) | 0.7335 |
+| 활성 규칙 수 (풀 크기) | 5 (+ask_target) |
+| ratchet high-water (CV) | 0.7606 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -266,3 +266,13 @@
 테스트 4종 green(`test_history_focal.py` 추가) · 래칫 0.650→0.7335 · submission 재생성(오늘 3회 미사용).
 
 **다음:** ① 클래스 혼동 잔여(control 86.7% → miss 16) ② target 0.767 (ask target user/named 갈림, minimal의 resolved 예외) ③ scope/policy fields F1 ④ plan args 세부.
+
+---
+
+## Iter 012 — 2026-07-08 — KEEP (ask target 소스 해독: 0.7365 → 0.7641)
+
+**진단:** target miss 28 중 ask 클래스 12가 user 일괄 규칙에 깨짐. 정답 추적 결과 named target의 출처 3종: ① `target_changed_after_turn` 값이 새 대상 이름을 직접 담음 ② **cross-session 메모리 회수** — `persistent_memory_recall`의 memory_key로 이전 `persistent_memory_write` 프로필을 찾고, 도메인이 필드를 정함(승인/규정→approval_channel, 조명→dusk_room, 쿠폰→preferred_channel, 기본 health_channel). 검증: recall형 12개 중 9개의 정답이 저장 프로필 값에 존재 ③ resolved_target — 단 실측서 true-user를 깨뜨려 **기각**(공짜 채점 비교: with③ 0.7401 vs no③ 0.7641).
+
+**결과:** target 0.767→0.817, overall 0.7365→**0.7641** (CV 0.7606), **+6/−0**, 테스트 4/4. self.memory(세션 메모리)를 처음으로 읽기 경로에 활용 — 대회가 강조한 session memory 차원 개통.
+
+**잔여 병목:** 클래스 혼동 16(신호 없음 확인, 보류) · invalidated target user/named 갈림(11) · scope/policy fields F1 (.67/.66) · plan args (.72).

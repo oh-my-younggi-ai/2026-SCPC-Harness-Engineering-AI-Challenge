@@ -301,32 +301,6 @@ class FinalHarness:
         return best
 
     # ------------------------------------------------------------------ target
-    def _recall_profile_target(self, task: dict[str, Any]) -> str | None:
-        """persistent_memory_recall → 저장 프로필(self.memory)에서 채널 필드 선택.
-
-        저장은 update_session_memory의 persistent_memory_write 처리로 이미 이뤄진다.
-        어느 필드가 target인지는 요청 도메인이 정한다(승인/규정→approval_channel,
-        조명→dusk_room, 쿠폰 전송→preferred_channel, 그 외 기본 health_channel).
-        """
-        rm = record_map(records_of(task))
-        pr = rm.get("persistent_memory_recall")
-        if not isinstance(pr, dict):
-            return None
-        prof = self.memory.get(str(pr.get("memory_key") or "")) or self.memory.get(str(pr.get("person") or ""))
-        if not isinstance(prof, dict):
-            return None
-        p = str(task.get("prompt", ""))
-        if any(k in p for k in ("승인", "규정", "검토", "성공")):
-            field = "approval_channel"
-        elif any(k in p for k in ("조명", "어두워")):
-            field = "dusk_room"
-        elif "쿠폰" in p:
-            field = "preferred_channel"
-        else:
-            field = "health_channel"
-        val = prof.get(field)
-        return str(val) if val else None
-
     def infer_target(self, task: dict[str, Any], focal: dict[str, Any], session: dict[str, Any], cls: str) -> str:
         rm = record_map(records_of(task))
         attrs = focal.get("attrs") or {}
@@ -334,16 +308,6 @@ class FinalHarness:
         if cls == CLASS_LOCAL:
             return "memory_store"
         if cls == CLASS_ASK:
-            # ① target_changed 값이 새 대상 이름을 직접 담는 경우 (상태 문구는 제외)
-            tc = rm.get("target_changed_after_turn")
-            if isinstance(tc, str) and re.fullmatch(r"[a-z][a-z0-9_]+", tc) \
-                    and not re.search(r"prior|superseded|changed|stale", tc):
-                return tc
-            # ② 저장 프로필 회수(세션/기기 메모리)
-            recalled = self._recall_profile_target(task)
-            if recalled:
-                return recalled
-            # (해석된 라우트로의 fallback은 실측상 true-user를 깨뜨려 제외 — ask의 기본은 user)
             return "user"
 
         resolved = rm.get("resolved_target")
