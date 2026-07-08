@@ -1,25 +1,24 @@
-# 제출 실험 run sheet (생성일 2026-07-08, 기준점 LB 0.8066 = BASE)
+# 제출 실험 run sheet (갱신 2026-07-08 밤, Iter 023 반영)
 
-모든 파일은 동일 코드(커밋 참조)에서 `SCPC_EXP` 토글만 바꿔 생성. 제출 시 파일을 `submission.csv`로 이름 바꿔 업로드.
-리더보드는 결정적 채점 → Δ = 순수 신호. **슬롯 1개 = 실험 1개.**
+기준: 마지막 LB 실측 0.8066 (Iter 019 코드). **Iter 023으로 dev 0.9202 / CV 0.9211** — 새 BASE 자체가 최우선 검증 대상.
+모든 파일은 동일 코드에서 `SCPC_EXP` 토글만 바꿔 생성. 제출 시 `submission.csv`로 이름 바꿔 업로드. 슬롯 1개 = 실험 1개.
 
 | 파일 | 토글 | BASE 대비 변경 | 검증하는 가설 |
 |---|---|---|---|
-| submission_BASE.csv | (없음) | 0 | 기준점 (0.8066 재현용, 제출 불필요) |
-| submission_E5.csv | E5 | 38 task (amend→proceed 26, ask→proceed 8, hold→proceed 4) | local-어휘 조합(boundary+auth/snap) = local 클래스 |
-| submission_E5X.csv | E5X | 38 task (amend→proceed 38, E5와 다른 집합) | local_authority_confirmed 단독 = local |
-| submission_E2.csv | E2 | 14 task (hold→amend) | doctor_note→hold 규칙이 틀렸는지 (dev n=2 근거) |
-| submission_E1.csv | E1 | 700 task (user_response만) | semantic 서술에 target/scope 구체값·ontology 용어 포함 |
+| submission_BASE.csv | (없음) | — | **Iter 023 transfer** (값-조합 규칙 + target 중단-원천 확장) |
+| submission_E5.csv | E5 | 28 task (ask16/amend8/hold4→proceed) | local-어휘 조합 = local (R1 미포섭분) |
+| submission_E5X.csv | E5X | 28 task (amend16/ask8→proceed) | local_authority_confirmed 단독 = local |
+| submission_E2.csv | E2 | 14 task (hold→amend) | doctor_note→hold 규칙 검증 (dev n=2) |
+| submission_E1.csv | E1 | 700 task (user_response만) | semantic 서술에 구체값·ontology 용어 |
 
 ## 제출 순서 (3슬롯)
 
-1. **E5** — Δ>0: local-어휘 가설 확증 → 2번은 E5X. Δ≤0: 2번은 E1.
-2. **E5X 또는 E1** (1번 결과에 따라).
-3. **E1 또는 E2** (남은 것 중 우선순위 높은 쪽; E1 미제출이면 E1).
+1. **BASE (Iter 023)** — 대형 변경의 transfer 측정이 최우선. 기대 0.88~0.90 (이전 dev-LB 갭 0.02~0.04).
+2. BASE Δ 크면(≥+0.06): **E1** (semantic 잔여 회수, 검증된 레버). BASE Δ 작으면(<+0.04): transfer 실패 요소 분석이 우선이므로 **E5** (독립 가설 검증).
+3. 남은 것 중 우선순위: E5 → E5X → E2.
 
 ## 판정 메모
 
-- E5 Δ>0 & E5X Δ>E5: 단독 조건이 더 강함 → 조합 조건 폐기, E5X 채택.
-- E1은 gate 무관(semantic 0.04 서버 전용) → Δ는 최대 ±0.04 범위, ±0.01 수준이어도 유의미.
-- E2 Δ>0: doctor_note→hold 폐기. Δ<0: 규칙 확증(두면 됨). 실제 영향 14 task뿐이라 Δ는 작을 것.
-- 결과는 improvement/LOG.md에 Iter로 기록하고 채택 토글은 기본 동작으로 승격(토글 제거).
+- BASE가 0.89 넘으면 본선 컷 통과 — 이후 슬롯은 안전 마진 확보용.
+- E5/E5X Δ>0면 해당 조건을 기본 규칙으로 승격. E2 Δ>0면 doctor_note→hold 폐기.
+- 결과는 improvement/LOG.md에 Iter로 기록.
