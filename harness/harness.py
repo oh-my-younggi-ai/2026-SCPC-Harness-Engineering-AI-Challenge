@@ -151,7 +151,7 @@ class FinalHarness:
         focal_id = str(focal.get("id") or "")
         target = self.infer_target(task, focal, session, cls)
         content_scope = self.build_content_scope(cls)
-        policy = self.build_policy(task, cls, evidence)
+        policy = self.build_policy(task, cls, evidence, focal)
         plan_events = self.build_plan_events(cls, focal_id, target)
 
         session["last_focal_id"] = focal_id
@@ -377,7 +377,14 @@ class FinalHarness:
         return {"mode": "raw", "allowed_fields": ["summary", "title"],
                 "excluded_fields": [], "requires_user_confirmation": False}
 
-    def build_policy(self, task: dict[str, Any], cls: str, evidence: dict[str, Any]) -> dict[str, Any]:
+    SENSITIVE_FIELDS = {"raw_quote", "rrn", "location", "numeric_value", "name", "doctor_note", "card_number"}
+    FIELD_NORM = {"amount": "numeric_value", "address": "location"}
+
+    def _sensitive_in_focal(self, focal: dict[str, Any]) -> list[str]:
+        cont = (focal.get("attrs") or {}).get("contains") or []
+        return sorted({self.FIELD_NORM.get(str(x), str(x)) for x in cont} & self.SENSITIVE_FIELDS)
+
+    def build_policy(self, task: dict[str, Any], cls: str, evidence: dict[str, Any], focal: dict[str, Any]) -> dict[str, Any]:
         rm = record_map(records_of(task))
         flags: set[str] = set()
         if cls == CLASS_LOCAL:
@@ -392,7 +399,8 @@ class FinalHarness:
             flags.add("external_share")
         if rm.get("session_share_policy") == "strict":
             flags.add("strict_share_policy")
-        if "sensitive_content" in set(evidence.get("risk_flags", [])):
+        # sensitive_content는 SLM 키워드가 아니라 focal 객체의 민감 필드 보유 여부로 판단 (dev 검증 95%+)
+        if self._sensitive_in_focal(focal):
             flags.add("sensitive_content")
         violations = ["precondition_changed_ignored"] if cls == CLASS_INVALID else []
         return {

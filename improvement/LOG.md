@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.7641** (dev) |
+| 현재 overall (전체) | **0.7676** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | **100%** (120/120) |
 | 활성 규칙 수 (풀 크기) | 5 (+ask_target) |
-| ratchet high-water (CV) | 0.7606 |
+| ratchet high-water (CV) | 0.7642 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -276,3 +276,13 @@
 **결과:** target 0.767→0.817, overall 0.7365→**0.7641** (CV 0.7606), **+6/−0**, 테스트 4/4. self.memory(세션 메모리)를 처음으로 읽기 경로에 활용 — 대회가 강조한 session memory 차원 개통.
 
 **잔여 병목:** 클래스 혼동 16(신호 없음 확인, 보류) · invalidated target user/named 갈림(11) · scope/policy fields F1 (.67/.66) · plan args (.72).
+
+---
+
+## Iter 013 — 2026-07-08 — KEEP (policy flags 정밀화: 0.7641 → 0.7676)
+
+**리더보드 실측 (Iter 011+012 제출): 0.6837** (0.583→+0.10, transfer 확인. dev 갭 ~0.08 안정 패턴)
+
+**변경:** `sensitive_content` 플래그를 SLM 키워드 대신 **focal.attrs.contains ∩ 민감필드**(amount→numeric_value 정규화)로 판단 — dev 검증 95%+ 정합. excluded_fields 후보 공식들(교집합 변형 3종)은 bake-off에서 전부 악화라 기각. policy 0.663→0.691, **+37/−0**, 테스트 4/4.
+
+**잔여 병목(다음 세션):** scope excluded 21건(클래스별 혼합 규칙 미해독) · risk_flags 코어 변형(precondition_changed/target_ambiguity 부가 조건) · plan args 세부 · 클래스 혼동 16(신호 없음 확인, 보류) · invalidated target user/named(11).
