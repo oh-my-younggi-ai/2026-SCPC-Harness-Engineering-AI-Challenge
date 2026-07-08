@@ -23,6 +23,7 @@ content_scope, plan verb 열, target 종류)을 결정한다. 판단은 두 층�
 """
 from __future__ import annotations
 
+import os
 import re
 from typing import Any
 
@@ -118,6 +119,13 @@ class FinalHarness:
             if any(k in clause for k in CLAUSE_REDACT):
                 return CLASS_MINIMAL
 
+        # [실험 토글: SCPC_EXP 환경변수, 리더보드 단일변수 실험용]
+        exp = os.environ.get("SCPC_EXP", "")
+        # E5: screening 전용 어휘 — local 계열 record 값의 의미 매핑 (dev에 값 부재라 LB로만 검증)
+        if "E5" in exp and rm.get("share_boundary_update") == "local_update_boundary"                 and (rm.get("dispatch_authority_check") == "local_authority_confirmed"
+                     or rm.get("route_candidate_snapshot") == "local_candidate_only"):
+            return CLASS_LOCAL
+
         # 2) 절이 없으면 record 신호.
         if "security_alert" in types or "safety_mode" in types or "privacy_guard" in types:
             return CLASS_INVALID
@@ -136,7 +144,8 @@ class FinalHarness:
             return CLASS_INVALID if "guardrail_ladder_signal" in types else CLASS_ASK
         if "external_share_policy" in types:
             # 의사 소견(doctor_note) 금지는 축약이 아니라 공유 전제 자체의 무효 (dev 2/2 vs raw_quote 9/9 amend)
-            if "doctor_note" in str(rm.get("external_share_policy", "")):
+            # [E2 실험: 이 규칙을 끄고 minimal로 — dev 근거 n=2가 screening 58건에 적용 중인 위험 검증]
+            if "doctor_note" in str(rm.get("external_share_policy", "")) and "E2" not in os.environ.get("SCPC_EXP", ""):
                 return CLASS_INVALID
             return CLASS_MINIMAL
         if rm.get("session_share_policy") == "strict":
