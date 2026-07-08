@@ -205,56 +205,6 @@ class FinalHarness:
                 return obj
         return None
 
-    def _resolve_history_focal(self, task: dict[str, Any], objects: list[dict[str, Any]]) -> dict[str, Any] | None:
-        """visible_history 선택 서사로 focal 해석 (마커 없는 다후보 task).
-
-        history가 후보 ref_code(WM-…)들을 나열하고 그중 하나를 지목하는 유형:
-        · "최종 승인 후보 WM-X" / "승인 표시가 남은 것은 WM-X" -> 그 코드
-        · "두 번째 후보만 확정" / "가운데 항목만 남았다" 등 서수 선택 -> 나열 순서의 해당 코드
-        개념 수준(승인·확정·잔존 표현 + 한국어 서수) 규칙이며 특정 문장 암기가 아니다.
-        """
-        by_ref = {str((o.get("attrs") or {}).get("ref_code")): o for o in objects}
-        # ① 지목형: 특정 코드를 직접 지정하는 표현 계열 (고정/지정/통과/승인 유지/최종 승인/잔존)
-        designation = [
-            r"최종\s*승인\s*후보[^W]{0,10}(WM-\d+)",
-            r"(?:승인\s*표시가?\s*남은\s*것은|남은\s*것은)\s*(WM-\d+)",
-            r"(?:유지된|승인\s*상태가\s*유지된)\s*참조는\s*(WM-\d+)",
-            r"(WM-\d+)\s*(?:로|으로)\s*고정",
-            r"(WM-\d+)\s*만\s*통과",
-            r"binding[은는]?\s*(WM-\d+)",
-            r"(WM-\d+)[을를]\s*현재\s*턴의\s*참조로",
-            r"처리할\s*ref[는은]?\s*(WM-\d+)",
-        ]
-        # ② 서수 선택형: 선택 표지("~만 확정/선택/남았", "유효한 항목은 ~")에 **결합된** 서수만 유효.
-        #    (같은 문장에 배제된 서수들이 함께 나올 수 있으므로 단독 등장으로 고르면 안 된다)
-        ORD = {"첫 번째": 0, "첫째": 0, "두 번째": 1, "둘째": 1, "세 번째": 2, "셋째": 2,
-               "가운데": None, "마지막": -1}
-        ord_alt = "|".join(ORD)
-        bound_ordinal = [
-            rf"({ord_alt})\s*(?:후보|항목)?\s*만",          # "두 번째 후보만 확정", "둘째 항목만 선택"
-            rf"유효한\s*항목은\s*({ord_alt})",                # "유효한 항목은 두 번째다"
-            rf"({ord_alt})\s*항목만",
-        ]
-        for item in reversed(task.get("visible_history", []) or []):
-            line = text_of(item.get("summary", "") if isinstance(item, dict) else item)
-            codes = re.findall(r"WM-\d+", line)
-            if not codes:
-                continue
-            for pat in designation:
-                m = re.search(pat, line)
-                if m and m.group(1) in by_ref:
-                    return by_ref[m.group(1)]
-            for pat in bound_ordinal:
-                m = re.search(pat, line)
-                if not m:
-                    continue
-                i = ORD[m.group(1)]
-                idx = len(codes) // 2 if i is None else (len(codes) - 1 if i == -1 else i)
-                if 0 <= idx < len(codes) and codes[idx] in by_ref:
-                    return by_ref[codes[idx]]
-                break
-        return None
-
     def choose_focal(self, task: dict[str, Any], session: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
         objects = objects_of(task)
         records = records_of(task)
@@ -265,11 +215,6 @@ class FinalHarness:
         marker_focal = self._resolve_marker_focal(task, objects)
         if marker_focal is not None:
             return marker_focal
-
-        # 0.5) history 선택 서사(승인/확정/서수 지목)가 있으면 그것을 따른다.
-        history_focal = self._resolve_history_focal(task, objects)
-        if history_focal is not None:
-            return history_focal
 
         object_by_id = {str(o.get("id")): o for o in objects}
         for record in reversed(records):

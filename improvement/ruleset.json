@@ -23,6 +23,14 @@
       "enabled": true,
       "iter": 9,
       "test": "tests/test_class_decoder.py"
+    },
+    {
+      "id": "history_focal",
+      "target": "choose_focal",
+      "signal": "history_focal",
+      "enabled": true,
+      "iter": 11,
+      "test": "tests/test_history_focal.py"
     }
   ],
   "note": "Iter 001 marker_focal + Iter 002 control_ask(승계) + Iter 009 class_decoder(클래스 템플릿)."

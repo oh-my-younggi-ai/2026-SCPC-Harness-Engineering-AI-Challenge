@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.6496** (dev) |
+| 현재 overall (전체) | **0.7365** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
-| focal 정확도 | 89.2% (107/120) |
-| 활성 규칙 수 (풀 크기) | 3 (marker_focal, control_ask, class_decoder) |
-| ratchet high-water (CV) | 0.6498 |
+| focal 정확도 | **100%** (120/120) |
+| 활성 규칙 수 (풀 크기) | 4 (+history_focal) |
+| ratchet high-water (CV) | 0.7335 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -241,3 +241,28 @@
 **결론(플래토 도달):** 깔끔한 지배-신호 win 2개(marker focal, control ask-noise) 소진. target·ask는 같은 표면 신호가 다른 정답으로 갈리는 다신호 판단이라 120-task·노이즈 0.02~0.03 환경에서 클린 룰이 안 나옴. 추가 이득은 (a) 더 정교한 다신호 모델링(120개서 과적합 위험) 또는 (b) 새 파생 특징 발굴 필요. **현 상태(0.342, transfer되는 win 2개)가 자연스러운 매듭.**
 
 ---
+
+---
+
+## Iter 011 — 2026-07-08 — KEEP (history 선택 서사 focal: 0.650 → 0.7365, focal 100%)
+
+**지문:** `choose_focal:history_selection_narrative:designation_and_bound_ordinal`
+
+**진단:** focal miss 13개 전부 marker-없는 다후보 task이며, visible_history 서사가 후보 WM 코드 중 하나를 지목("두 번째 후보만 확정" / "최종 승인 후보 WM-X" / "가운데 항목만" / "승인 표시가 남은 것은"). baseline은 vh에서 아무 ref_code나 첫 매칭을 집어 오답.
+
+**구현:** `_resolve_history_focal` — 개념 그룹 2종: ① 지목형 정규식(고정/지정/통과/승인 유지/최종 승인/잔존) ② **선택 표지에 결합된 서수**(단독 서수 금지 — "첫 번째와 세 번째는 보류, 두 번째만 확정" 문장에서 배제 서수에 낚이지 않도록). marker 해석 다음, 기존 규칙 앞에 배치.
+
+**transfer 사전 검증 (Iter 010 교훈 적용):** 첫 구현이 dev-문자에 붙어 screening 발화 0/700 → screening의 marker-없는 237개 task의 vh 서사를 집계하니 **6종 paraphrase**(같은 두 개념) → 개념 정규식으로 확장. 도중 dev 회귀 버그(서수 오결합, 0.737→0.687)를 잡아 선택-표지-결합 규칙으로 수정. 최종: **dev focal 100% + screening 발화 237/237 + 회귀 0.**
+
+| 축 | before | after |
+| --- | --- | --- |
+| overall | 0.6496 | **0.7365** |
+| CV | 0.6498±0.032 | 0.7335±0.043 |
+| focal | 0.892 | **1.000** |
+| target | 0.683 | 0.767 |
+| control | 0.758 | 0.867 |
+| scope/policy/plan | .56/.54/.59 | .64/.61/.67 |
+
+테스트 4종 green(`test_history_focal.py` 추가) · 래칫 0.650→0.7335 · submission 재생성(오늘 3회 미사용).
+
+**다음:** ① 클래스 혼동 잔여(control 86.7% → miss 16) ② target 0.767 (ask target user/named 갈림, minimal의 resolved 예외) ③ scope/policy fields F1 ④ plan args 세부.

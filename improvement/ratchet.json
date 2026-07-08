@@ -1,1 +1,10 @@
-{"cv_high_water": 0.6498, "all_high_water": 0.6496, "locked_tests": ["harness/tests/test_marker_focal.py", "harness/tests/test_control_ask.py", "harness/tests/test_class_decoder.py"]}
+{
+ "cv_high_water": 0.7335,
+ "all_high_water": 0.7365,
+ "locked_tests": [
+  "harness/tests/test_marker_focal.py",
+  "harness/tests/test_control_ask.py",
+  "harness/tests/test_class_decoder.py",
+  "harness/tests/test_history_focal.py"
+ ]
+}
