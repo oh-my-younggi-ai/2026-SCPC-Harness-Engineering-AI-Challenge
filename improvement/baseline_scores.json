@@ -1,13 +1,13 @@
 {
-  "overall": 0.8049,
+  "overall": 0.8288,
   "n": 120,
   "axes": {
     "focal": 1.0,
-    "target": 0.8667,
-    "control": 0.8667,
-    "content_scope": 0.7561,
-    "policy": 0.7427,
-    "plan": 0.7769,
+    "target": 0.8833,
+    "control": 0.9,
+    "content_scope": 0.7894,
+    "policy": 0.7752,
+    "plan": 0.8103,
     "semantic_response": 0.0,
     "counterfactual": 0.0
   },
@@ -15,9 +15,9 @@
     "k": 5,
     "per_fold_overall": {
       "0": 0.8504,
-      "1": 0.8549,
+      "1": 0.9123,
       "2": 0.8122,
-      "3": 0.7253,
+      "3": 0.7905,
       "4": 0.7617
     },
     "fold_sizes": {
@@ -27,8 +27,8 @@
       "3": 22,
       "4": 21
     },
-    "cv_mean": 0.8009,
-    "cv_std": 0.0505
+    "cv_mean": 0.8254,
+    "cv_std": 0.0522
   },
   "rows": [
     {
@@ -355,14 +355,14 @@
     },
     {
       "task_id": "final_dev_30bfc3bff278",
-      "score": 0.3,
+      "score": 0.9535,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 0.95,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -425,14 +425,14 @@
     },
     {
       "task_id": "final_dev_503d60ca6a8b",
-      "score": 0.18,
+      "score": 0.96,
       "axes": {
         "focal": 1.0,
-        "target": 0.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 1.0,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -579,14 +579,14 @@
     },
     {
       "task_id": "final_dev_34fff7b8fbb4",
-      "score": 0.3,
+      "score": 0.9535,
       "axes": {
         "focal": 1.0,
         "target": 1.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 0.95,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }
@@ -1545,14 +1545,14 @@
     },
     {
       "task_id": "final_dev_208d83525bfe",
-      "score": 0.18,
+      "score": 0.96,
       "axes": {
         "focal": 1.0,
-        "target": 0.0,
-        "control": 0.0,
-        "content_scope": 0.0,
-        "policy": 0.0,
-        "plan": 0.0,
+        "target": 1.0,
+        "control": 1.0,
+        "content_scope": 1.0,
+        "policy": 1.0,
+        "plan": 1.0,
         "semantic_response": 0.0,
         "counterfactual": 0.0
       }

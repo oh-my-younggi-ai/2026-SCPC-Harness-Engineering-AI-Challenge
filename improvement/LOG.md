@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.8049** (dev) |
+| 현재 overall (전체) | **0.8288** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | **100%** (120/120) |
 | 활성 규칙 수 (풀 크기) | 5 (+ask_target) |
-| ratchet high-water (CV) | 0.8009 |
+| ratchet high-water (CV) | 0.8254 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -317,3 +317,12 @@ dev 검증된 결정론 규칙 3개 (bake-off로 채택, +22/−0):
 ① local excluded_fields는 **strict 세션 또는 민감 focal일 때만** [location,numeric_value,raw_quote] (dev 38/40) ② ask excluded = 민감 focal이면 ['name'] (6/7). scope .733→.756, +11/−0, 테스트 4/4.
 
 **미해독 잔여(신호 부재 확인):** ask mode summary/redacted/none 갈림(n=23, 신호 혼합) · other 클래스 mode(n=7) · 클래스 혼동 16 · dev-LB 갭.
+
+---
+
+## Iter 017 — 2026-07-08 — KEEP (클래스 규칙 2종: 0.8049 → 0.8288, control 0.90)
+
+'신호 없음' 보류였던 클래스 혼동을 생성기 이유(args) 대조로 재공략:
+① `external_share_policy=doctor_note_forbidden` + health_record → **hold** (공유 전제 자체 무효; raw_quote_forbidden→amend 9/9와 값으로 구분)
+② `authority_incomplete` + **guardrail_ladder_signal 동반 → hold**, 없으면 ask (6/6 분리)
++4/−0이나 게이트 해제로 overall +0.024. 테스트 4/4.

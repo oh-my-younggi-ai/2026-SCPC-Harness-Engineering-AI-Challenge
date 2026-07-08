@@ -132,8 +132,12 @@ class FinalHarness:
                 and rm.get("share_boundary_update") == "dispatch_blocked_until_binding"):
             return CLASS_INVALID
         if rm.get("dispatch_authority_check") == "authority_incomplete":
-            return CLASS_ASK
+            # guardrail 사다리 신호가 함께 있으면 전제가 이미 무효화된 상태(hold), 없으면 확인(ask)
+            return CLASS_INVALID if "guardrail_ladder_signal" in types else CLASS_ASK
         if "external_share_policy" in types:
+            # 의사 소견(doctor_note) 금지는 축약이 아니라 공유 전제 자체의 무효 (dev 2/2 vs raw_quote 9/9 amend)
+            if "doctor_note" in str(rm.get("external_share_policy", "")):
+                return CLASS_INVALID
             return CLASS_MINIMAL
         if rm.get("session_share_policy") == "strict":
             return CLASS_MINIMAL
