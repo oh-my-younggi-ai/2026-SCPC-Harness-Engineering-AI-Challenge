@@ -401,6 +401,13 @@ class FinalHarness:
         cont = (focal.get("attrs") or {}).get("contains") or []
         return sorted({self.FIELD_NORM.get(str(x), str(x)) for x in cont} & self.SENSITIVE_FIELDS)
 
+    def _sensitive_for_policy(self, focal: dict[str, Any]) -> bool:
+        """policy 판단용 민감 탐지: contains 외 attrs.fields(health_record 등)도 본다."""
+        if self._sensitive_in_focal(focal):
+            return True
+        fields = (focal.get("attrs") or {}).get("fields") or []
+        return bool({self.FIELD_NORM.get(str(x), str(x)) for x in fields} & self.SENSITIVE_FIELDS)
+
     def build_policy(self, task: dict[str, Any], cls: str, evidence: dict[str, Any], focal: dict[str, Any]) -> dict[str, Any]:
         rm = record_map(records_of(task))
         flags: set[str] = set()
@@ -418,8 +425,12 @@ class FinalHarness:
             flags.add("strict_share_policy")
         if "ambiguous_target" in rm:  # 대상 모호 record ⟺ target_ambiguity flag (dev P=1.00/R=0.93)
             flags.add("target_ambiguity")
+        if "ambiguous_focal" in rm:  # focal 모호 record ⟺ ambiguous_focal flag (dev P/R=1.00)
+            flags.add("ambiguous_focal")
+        if rm.get("share_boundary_update") == "local_update_boundary":  # 로컬 경계 (P=1.00)
+            flags.add("local_only")
         # sensitive_content는 SLM 키워드가 아니라 focal 객체의 민감 필드 보유 여부로 판단 (dev 검증 95%+)
-        if self._sensitive_in_focal(focal):
+        if self._sensitive_for_policy(focal):
             flags.add("sensitive_content")
         violations = ["precondition_changed_ignored"] if cls == CLASS_INVALID else []
         return {
