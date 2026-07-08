@@ -150,7 +150,7 @@ class FinalHarness:
         focal = self.choose_focal(task, session, evidence)
         focal_id = str(focal.get("id") or "")
         target = self.infer_target(task, focal, session, cls)
-        content_scope = self.build_content_scope(cls, focal)
+        content_scope = self.build_content_scope(cls, focal, task)
         policy = self.build_policy(task, cls, evidence, focal)
         plan_events = self.build_plan_events(cls, focal_id, target, focal)
 
@@ -366,17 +366,22 @@ class FinalHarness:
         return str(session.get("last_target") or "user")
 
     # ------------------------------------------------------------------ scope / policy / plan (클래스 템플릿)
-    def build_content_scope(self, cls: str, focal: dict[str, Any]) -> dict[str, Any]:
+    def build_content_scope(self, cls: str, focal: dict[str, Any], task: dict[str, Any] | None = None) -> dict[str, Any]:
         if cls == CLASS_LOCAL:
+            # strict 세션이거나 focal이 민감 필드를 보유할 때만 제외 목록 명시 (dev 38/40)
+            rm = record_map(records_of(task)) if task else {}
+            guarded = (rm.get("session_share_policy") == "strict") or bool(self._sensitive_in_focal(focal))
             return {"mode": "status_only", "allowed_fields": ["status"],
-                    "excluded_fields": ["location", "numeric_value", "raw_quote"],
+                    "excluded_fields": ["location", "numeric_value", "raw_quote"] if guarded else [],
                     "requires_user_confirmation": False}
         if cls == CLASS_INVALID:
             return {"mode": "none", "allowed_fields": [], "excluded_fields": [],
                     "requires_user_confirmation": False}
         if cls == CLASS_ASK:
+            # 민감 필드 보유 시 name 제외가 기준 (dev 6/7), 아니면 raw_quote 기본
+            excl = ["name"] if self._sensitive_in_focal(focal) else ["raw_quote"]
             return {"mode": "summary", "allowed_fields": ["summary"],
-                    "excluded_fields": ["raw_quote"], "requires_user_confirmation": True}
+                    "excluded_fields": excl, "requires_user_confirmation": True}
         if cls == CLASS_MINIMAL:
             # 제외 필드 = focal이 실제 보유한 민감 필드(정규화 교집합), 없으면 raw_quote 기본
             sensitive = self._sensitive_in_focal(focal)
