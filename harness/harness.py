@@ -150,9 +150,9 @@ class FinalHarness:
         focal = self.choose_focal(task, session, evidence)
         focal_id = str(focal.get("id") or "")
         target = self.infer_target(task, focal, session, cls)
-        content_scope = self.build_content_scope(cls)
+        content_scope = self.build_content_scope(cls, focal)
         policy = self.build_policy(task, cls, evidence, focal)
-        plan_events = self.build_plan_events(cls, focal_id, target)
+        plan_events = self.build_plan_events(cls, focal_id, target, focal)
 
         session["last_focal_id"] = focal_id
         session["last_target"] = target
@@ -360,7 +360,7 @@ class FinalHarness:
         return str(session.get("last_target") or "user")
 
     # ------------------------------------------------------------------ scope / policy / plan (클래스 템플릿)
-    def build_content_scope(self, cls: str) -> dict[str, Any]:
+    def build_content_scope(self, cls: str, focal: dict[str, Any]) -> dict[str, Any]:
         if cls == CLASS_LOCAL:
             return {"mode": "status_only", "allowed_fields": ["status"],
                     "excluded_fields": ["location", "numeric_value", "raw_quote"],
@@ -372,8 +372,10 @@ class FinalHarness:
             return {"mode": "summary", "allowed_fields": ["summary"],
                     "excluded_fields": ["raw_quote"], "requires_user_confirmation": True}
         if cls == CLASS_MINIMAL:
+            # 제외 필드 = focal이 실제 보유한 민감 필드(정규화 교집합), 없으면 raw_quote 기본
+            sensitive = self._sensitive_in_focal(focal)
             return {"mode": "redacted", "allowed_fields": ["summary"],
-                    "excluded_fields": ["raw_quote"], "requires_user_confirmation": False}
+                    "excluded_fields": sensitive or ["raw_quote"], "requires_user_confirmation": False}
         return {"mode": "raw", "allowed_fields": ["summary", "title"],
                 "excluded_fields": [], "requires_user_confirmation": False}
 
@@ -399,6 +401,8 @@ class FinalHarness:
             flags.add("external_share")
         if rm.get("session_share_policy") == "strict":
             flags.add("strict_share_policy")
+        if "ambiguous_target" in rm:  # 대상 모호 record ⟺ target_ambiguity flag (dev P=1.00/R=0.93)
+            flags.add("target_ambiguity")
         # sensitive_content는 SLM 키워드가 아니라 focal 객체의 민감 필드 보유 여부로 판단 (dev 검증 95%+)
         if self._sensitive_in_focal(focal):
             flags.add("sensitive_content")
@@ -409,7 +413,7 @@ class FinalHarness:
             "requires_confirmation": cls == CLASS_ASK,
         }
 
-    def build_plan_events(self, cls: str, focal_id: str, target: str) -> list[dict[str, Any]]:
+    def build_plan_events(self, cls: str, focal_id: str, target: str, focal: dict[str, Any]) -> list[dict[str, Any]]:
         if cls == CLASS_LOCAL:
             return [
                 {"verb": "read", "target": focal_id, "args": {"purpose": "local_update"}},
@@ -429,7 +433,8 @@ class FinalHarness:
         if cls == CLASS_MINIMAL:
             return [
                 {"verb": "read", "target": focal_id, "args": {"purpose": "minimal_disclosure"}},
-                {"verb": "redact", "target": focal_id, "args": {"remove": "raw_quote"}},
+                {"verb": "redact", "target": focal_id,
+                 "args": {"remove": "sensitive_fields" if self._sensitive_in_focal(focal) else "raw_quote"}},
                 {"verb": "dispatch", "target": target, "args": {"scope": "redacted"}},
             ]
         return [

@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.7676** (dev) |
+| 현재 overall (전체) | **0.7718** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | **100%** (120/120) |
 | 활성 규칙 수 (풀 크기) | 5 (+ask_target) |
-| ratchet high-water (CV) | 0.7642 |
+| ratchet high-water (CV) | 0.7684 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -286,3 +286,16 @@
 **변경:** `sensitive_content` 플래그를 SLM 키워드 대신 **focal.attrs.contains ∩ 민감필드**(amount→numeric_value 정규화)로 판단 — dev 검증 95%+ 정합. excluded_fields 후보 공식들(교집합 변형 3종)은 bake-off에서 전부 악화라 기각. policy 0.663→0.691, **+37/−0**, 테스트 4/4.
 
 **잔여 병목(다음 세션):** scope excluded 21건(클래스별 혼합 규칙 미해독) · risk_flags 코어 변형(precondition_changed/target_ambiguity 부가 조건) · plan args 세부 · 클래스 혼동 16(신호 없음 확인, 보류) · invalidated target user/named(11).
+
+---
+
+## Iter 014 — 2026-07-08 — KEEP (클래스 템플릿 세부 3종: 0.7676 → 0.7718)
+
+dev 검증된 결정론 규칙 3개 (bake-off로 채택, +22/−0):
+1. minimal excluded_fields = focal.contains∩민감(정규화) 있으면 그것, 없으면 [raw_quote]
+2. `ambiguous_target` record → `target_ambiguity` flag (P=1.00/R=0.93)
+3. redact의 remove arg = sensitive_fields ⟺ focal 민감 보유 (**100% 결정론** 9/9·19/19). clarify target은 이미 user 26/26 정답.
+
+기각: ask/local excluded 변형(악화), precondition_changed flag(단일 record 신호 없음).
+
+**잔여:** scope .68/policy .70/plan .73 내 미해독 변형 · 클래스 혼동 16(보류) · invalidated target(11) · dev-LB 갭 0.08 (screening fallback 품질).
