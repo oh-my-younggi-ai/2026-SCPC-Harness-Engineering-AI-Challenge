@@ -23,6 +23,7 @@
 ### 4. ~~scope allowed~~ → n=2 잔여, 스킵
 
 ## 신호 부재 확정 (재시도 금지 — attempts 참조)
+- **vh 서사유형 → 클래스** (07-08 저녁): 동일템플릿 6개에선 갈리는 듯했으나 전체 68개에서 27~58% 순도. 조합 확장은 과적합 영역.
 - **ask 하위이유** (route vs precondition_changed, n=26): 중단원천×전제어휘 불분리. 다수결 route 유지. [07-08 확정]
 - **ask mode 3분** (summary/redacted/none, n=23): 중단원천×boundary×sensitive 각도까지 소진. 다수결 summary 유지.
 - **클래스 잔여 12**: 동일 신호→다른 클래스. payment/enterprise/ops recall류는 screening 2/700이라 스킵이 정답.
