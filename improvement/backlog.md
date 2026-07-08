@@ -2,7 +2,10 @@
 
 ## 🚀 Iter 023 (07-08 밤): L3 재공략 대성공 — dev 0.9202 / CV 0.9211 (컷 0.89 상회)
 record **값-조합** 판별자 R1~R6 (클래스 잔여 12→1) + 중단-원천 원리의 ask/local target 확장 (target 0.85→0.975, dependent 게이트 해제). 상세는 LOG Iter 023.
-**다음 슬롯 1순위 = 새 BASE 자체 (transfer 검증).** run sheet: `experiments/README.md` — BASE → (Δ에 따라 E1 또는 E5) → 나머지.
+**다음 슬롯 1순위 = 새 BASE 자체 (transfer 검증).** run sheet: `experiments/README.md` — **BASE → E1 → E2** (규정 감사 반영).
+
+## ⚖️ 규정 감사 (07-08 밤, LOG Iter 024): E5/E5X 제출 보류 권고
+screening 전용 값의 정답 매핑(E5/E5X)은 "평가 데이터셋 패턴 분석→정답 후보 설정 반영" 금지 문구에 정면 노출되는 유일한 항목 — 제출하지 않고 상위권 코드 제출 전 토글 제거. BASE의 record 값 규칙은 방어가능(TERMS_GUIDE가 value 해석을 명시, 생성기 enum 어휘, CV 일반화 검증) — README/PPT에 "온톨로지 어휘 의미 해석"으로 서술. 그 외 전 항목 적합(외부API 없음·meta 정확·하드코딩 없음·결정성 MD5 검증).
 추가 발견: `mixed_local_external_candidates` 177개는 전부 session_share_policy=strict와 동시 출현 → 독립 신호 아닐 가능성, 우선순위 하향. age_hint=many_sessions_later는 dev 4-control 분산으로 판별자 아님 확정(0937 잔여 1건 유지).
 
 목표: **0.8066 → 0.89 (잔여 0.083)**. 추정 구성: semantic 잔여 ~0.01 + transfer 잔여 ~0.05 + dev 잔여(0.17, 대부분 신호부재).
