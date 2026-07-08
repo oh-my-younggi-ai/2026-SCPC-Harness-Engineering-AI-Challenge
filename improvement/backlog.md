@@ -1,33 +1,31 @@
-# 개선 후보 백로그 (2026-07-08 Iter 019 시점 최신화)
+# 개선 백로그 (2026-07-08 밤, LB 0.8066 시점)
 
-목표: LB 0.7933 → 0.89 (잔여 0.097). 구성: dev 천장(0.8303) ↑ + transfer 갭(0.037) ↓ + semantic(0.04, 미검증).
+목표: **0.8066 → 0.89 (잔여 0.083)**. 추정 구성: semantic 잔여 ~0.01 + transfer 잔여 ~0.05 + dev 잔여(0.17, 대부분 신호부재).
+원칙: 로컬 신호 소진 → **제출 1슬롯 = 단일변수 실험 1개** (하루 3슬롯 = 질문 3개). 개념 일반화·래칫·bake-off 규율 유지.
 
-## 전략 원칙 (검증된 것)
-1. **개념 수준 일반화**: dev-문자 규칙은 transfer 실패. 절/서사는 의미 계열(개념 어휘)로. (Iter 010/011 실증)
-2. **screening 빈도 가중**: dev-희귀·screening-희귀(<1%) 신호는 스킵.
-3. **중단-원천 원리**: 절(최신 지시)로 결정 ↔ record 신호로 결정이 target/클래스를 가르는 메타 패턴. (Iter 015/017)
-4. 공짜 채점 bake-off로만 채택. 래칫(CV 0.8269) 하드게이트.
+## 실험 큐 (내일 3슬롯 후보 — 우선순위순)
 
-## 열린 후보 (우선순위순)
+### E1. user_response 변형 (검증된 레버, 잔여 ~0.01)
+- 현재: 클래스별 고정 서술. 변형 후보: (a) target/scope 구체값 포함형 ("summary만 project_room으로…") (b) 사유 키워드 강화형 (전제 무효화/route 미확정 등 ontology 용어 직접 사용).
+- 설계: 변형 (a) 단독 제출 → Δ로 방향 확인. 오르면 (b) 추가.
 
-### 1. semantic_response 검증 [Iter 019 반영됨, 미검증]
-- user_response를 클래스별 판단 서술로 교체함. **다음 제출에서 효과 분리 측정** (이번 제출의 유일한 변경).
-- 오르면: 참조 응답 스타일에 더 정렬(간결/상세 변형 실험). 안 오르면 접기.
+### E2. doctor_note→hold 규칙 방향 검증 (screening 58개 적용 중, dev 근거 n=2뿐)
+- 위험: dev 2건으로 일반화한 규칙이 58건에 적용 중. 틀렸다면 -0.01~0.04 손실 중일 수도.
+- 설계: 이 규칙만 끈(→minimal/amend) 버전 제출. Δ>0면 규칙 폐기, Δ<0면 규칙 확증. 어느 쪽이든 정보 +.
 
-### 2. transfer 갭 0.037 — 재감사 완료(07-08 저녁), 구조 이상 없음
-- 미매칭 절 0 · history_focal 237발화 · doctor_note 58/auth+guardrail 49 발화(dev 비례) · 분포 정합. **로컬에서 더 할 것 없음** — 잔여 갭은 semantic(0.04)과 클래스 잔여의 screening 버전 추정.
+### E3. auth_incomplete+guardrail→hold 검증 (screening 49개, dev 6/6)
+- E2와 같은 구조. dev 근거는 6/6이라 E2보다 신뢰 높음 — E2 결과 보고 결정.
 
-### 3. ~~plan 세부~~ → 소진 확인 (07-08 저녁)
-- 게이트-내 plan 손실 = ask 하위이유 args 6건 + verb 2 + len 2뿐. 사실상 천장.
+### E4. ask mode 실험 (dev 다수결 summary 12/23)
+- screening의 ask 161개에 summary 일괄 적용 중. redacted 버전과 비교 실험 가능. 우선순위 낮음(mode는 scope 점수의 0.4×0.17 국소).
 
-### 4. ~~scope allowed~~ → n=2 잔여, 스킵
+## 로컬에서 가능한 것 (제출 불요)
+- L1. user_response 변형안 (a)(b) 작성 자체 — 문구 설계는 로컬 작업.
+- L2. E2/E3용 토글: ruleset/플래그로 규칙 on/off 가능하게 소규모 리팩터 (실험 제출 준비).
+- L3. 클래스 잔여 12에 대한 마지막 각도: personal_memory 텍스트/objects 구성 — 아직 안 본 필드 조합이 남았는지 30분 한도로 확인.
 
 ## 신호 부재 확정 (재시도 금지 — attempts 참조)
-- **vh 서사유형 → 클래스** (07-08 저녁): 동일템플릿 6개에선 갈리는 듯했으나 전체 68개에서 27~58% 순도. 조합 확장은 과적합 영역.
-- **ask 하위이유** (route vs precondition_changed, n=26): 중단원천×전제어휘 불분리. 다수결 route 유지. [07-08 확정]
-- **ask mode 3분** (summary/redacted/none, n=23): 중단원천×boundary×sensitive 각도까지 소진. 다수결 summary 유지.
-- **클래스 잔여 12**: 동일 신호→다른 클래스. payment/enterprise/ops recall류는 screening 2/700이라 스킵이 정답.
-- **precondition_changed flag**: guardrail P=0.57 불충분.
-- **other 클래스 mode** (n=7): raw/summary/redacted 혼합.
+- ask mode 3분(n=23) · ask 하위이유(n=26) · 클래스 잔여 12(record/prompt/guardrail/vh서사 전부 소진) · precondition_changed flag · other mode(n=7) · vh 서사유형(전체 27~58% 순도)
 
-> 이 항목들이 dev 천장(~0.83)의 정체. 뚫으려면 생성기의 비가시 요소(확률적 변형 가능성)이거나 아직 못 본 파생 특징 필요.
+## 검증된 전략 원칙
+1. 개념 수준 일반화 (Iter 010/011) 2. screening 빈도 가중 3. 중단-원천 원리 (015/017) 4. bake-off+래칫 5. **제출=단일변수 실험** (019 실증)
