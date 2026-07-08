@@ -4,12 +4,12 @@
 
 | 지표 | 값 |
 | --- | --- |
-| 현재 overall (전체) | **0.7718** (dev) |
+| 현재 overall (전체) | **0.8010** (dev) |
 | **리더보드 실측** | **0.58299** (Iter 010 제출, transfer 수리 검증됨) |
 | CV 일반화 평균±표준편차 | 0.6498 ± 0.0324 (k=5) |
 | focal 정확도 | **100%** (120/120) |
 | 활성 규칙 수 (풀 크기) | 5 (+ask_target) |
-| ratchet high-water (CV) | 0.7684 |
+| ratchet high-water (CV) | 0.7971 |
 | 누적 반복 수 | 4 (2 KEEP, 2 REJECT) |
 | 최고 기록 (dev CV) | 0.3419 |
 | **실제 리더보드 (screening 700)** | **0.3295** (CV 0.342±0.02 추정과 일치 → 과적합 없음·transfer 확인) |
@@ -299,3 +299,13 @@ dev 검증된 결정론 규칙 3개 (bake-off로 채택, +22/−0):
 기각: ask/local excluded 변형(악화), precondition_changed flag(단일 record 신호 없음).
 
 **잔여:** scope .68/policy .70/plan .73 내 미해독 변형 · 클래스 혼동 16(보류) · invalidated target(11) · dev-LB 갭 0.08 (screening fallback 품질).
+
+---
+
+## Iter 015 — 2026-07-08 — KEEP (hold target의 중단-원천 규칙: 0.7718 → 0.8010)
+
+**발견:** invalidated(hold)의 target user/named 갈림 = **중단의 원천**. 절(최신 지시)로 중단된 hold → target=user (6/6), record 신호로 중단된 hold → 원래 대상 유지·resolved/recipient (9/9). 의미적으로도 자연: 지시로 멈추면 사용자 보고, 신호로 멈추면 원 라우트 유지.
+
+**결과:** target 0.817→0.867, overall **0.8010** (CV 0.7971), +6/−0, 테스트 4/4.
+
+**현 축:** focal 1.00 · control .87 · target .87 · scope .70 · policy .73 · plan .77

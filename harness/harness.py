@@ -333,6 +333,12 @@ class FinalHarness:
 
         if cls == CLASS_LOCAL:
             return "memory_store"
+        if cls == CLASS_INVALID:
+            # 절(최신 지시)로 중단된 hold는 사용자 보고(user), record 신호로 중단된 hold는
+            # 원래 대상 유지(resolved/recipient 경로). dev 검증: 절→user 6/6, 무절→named 9/9.
+            clause = constraint_clause(str(task.get("prompt", "")))
+            if clause and any(k in clause for k in CLAUSE_INVALID):
+                return "user"
         if cls == CLASS_ASK:
             # ① target_changed 값이 새 대상 이름을 직접 담는 경우 (상태 문구는 제외)
             tc = rm.get("target_changed_after_turn")
