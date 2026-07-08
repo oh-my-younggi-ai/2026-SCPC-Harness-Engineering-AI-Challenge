@@ -334,3 +334,11 @@ dev 검증된 결정론 규칙 3개 (bake-off로 채택, +22/−0):
 ① `ambiguous_focal` record ⟺ flag (P/R=1.00, 17/17) ② `share_boundary_update=local_update_boundary` → `local_only` flag (P=1.00) ③ 민감 탐지를 attrs.**fields**(health_record 등)로 확장 — 단 bake-off 결과 **policy 판단에만** 적용(scope/plan은 contains 유지, fields 확장 시 scope 회귀). +22/−0.
 
 **미해독 확정(시도 완료):** precondition_changed flag(guardrail P.57 불충분) · ask mode 3분(n=23) · other mode(n=7) · 클래스 잔여 12(payment/enterprise/ops recall은 screening 2/700이라 스킵) — 이들이 현 천장. dev 0.8303 도달.
+
+---
+
+## 리더보드 실측 (Iter 013~018 제출): **0.7933**
+
+- 궤적: 0.3295 → 0.3442 → 0.583 → 0.6837 → **0.7933**
+- **dev-LB 갭 0.08 → 0.037로 축소** — hold 중단-원천 규칙(015)·doctor_note/guardrail 분리(017)·세부 규칙들이 screening에 그대로 transfer. 로컬 채점이 semantic_response(0.04)를 0 처리하는 걸 감안하면 실질 갭은 더 작을 수 있음.
+- 본선 컷 0.89까지 잔여 **0.097**. dev 천장(0.8303)을 올리는 것과 semantic_response(로컬 미측정 0.04)가 남은 레버.
