@@ -93,6 +93,11 @@ def constraint_clause(prompt: str) -> str:
     return prompt[idx + 2:].strip() if idx >= 0 else ""
 
 
+def exp_flags() -> frozenset[str]:
+    """SCPC_EXP 실험 토글 (쉼표 구분 토큰). 부분문자열 오발화 방지를 위해 토큰 단위로만 매칭."""
+    return frozenset(filter(None, os.environ.get("SCPC_EXP", "").split(",")))
+
+
 class FinalHarness:
     def __init__(self) -> None:
         self.slm = FixedSLMClient()
@@ -119,11 +124,15 @@ class FinalHarness:
             if any(k in clause for k in CLAUSE_REDACT):
                 return CLASS_MINIMAL
 
-        # [실험 토글: SCPC_EXP 환경변수, 리더보드 단일변수 실험용]
-        exp = os.environ.get("SCPC_EXP", "")
+        # [실험 토글: SCPC_EXP 환경변수(쉼표 구분 토큰), 리더보드 단일변수 실험용]
+        exp = exp_flags()
         # E5: screening 전용 어휘 — local 계열 record 값의 의미 매핑 (dev에 값 부재라 LB로만 검증)
-        if "E5" in exp and rm.get("share_boundary_update") == "local_update_boundary"                 and (rm.get("dispatch_authority_check") == "local_authority_confirmed"
+        if "E5" in exp and rm.get("share_boundary_update") == "local_update_boundary" \
+                and (rm.get("dispatch_authority_check") == "local_authority_confirmed"
                      or rm.get("route_candidate_snapshot") == "local_candidate_only"):
+            return CLASS_LOCAL
+        # E5X: E5 확대판 — local_authority_confirmed 단독으로 local 판정 (screening 104개)
+        if "E5X" in exp and rm.get("dispatch_authority_check") == "local_authority_confirmed":
             return CLASS_LOCAL
 
         # 2) 절이 없으면 record 신호.
@@ -145,7 +154,7 @@ class FinalHarness:
         if "external_share_policy" in types:
             # 의사 소견(doctor_note) 금지는 축약이 아니라 공유 전제 자체의 무효 (dev 2/2 vs raw_quote 9/9 amend)
             # [E2 실험: 이 규칙을 끄고 minimal로 — dev 근거 n=2가 screening 58건에 적용 중인 위험 검증]
-            if "doctor_note" in str(rm.get("external_share_policy", "")) and "E2" not in os.environ.get("SCPC_EXP", ""):
+            if "doctor_note" in str(rm.get("external_share_policy", "")) and "E2" not in exp_flags():
                 return CLASS_INVALID
             return CLASS_MINIMAL
         if rm.get("session_share_policy") == "strict":
@@ -479,6 +488,23 @@ class FinalHarness:
 
     def user_response(self, cls: str, control: str, target: str, scope: dict[str, Any]) -> str:
         # 판단 내용을 구체적으로 서술 (semantic_response는 서버에서만 채점되므로 클래스 의미에 정렬)
+        # [E1 실험: target/scope 구체값 + ontology 용어 포함형 — 검증된 semantic 레버의 변형]
+        if "E1" in exp_flags():
+            mode = str(scope.get("mode", ""))
+            if cls == CLASS_LOCAL:
+                return (f"외부 공유 없이 {target}에 status_only로 내부 상태만 갱신했습니다. "
+                        "dispatch는 수행하지 않습니다.")
+            if cls == CLASS_INVALID:
+                return (f"이전 허용의 전제가 최신 상태에서 무효화되어 {target}(으)로의 실행을 "
+                        "guard 상태로 보류합니다. 전제 재확인 전에는 dispatch하지 않습니다.")
+            if cls == CLASS_ASK:
+                return (f"대상 또는 전제가 확정되지 않아 {target}에게 먼저 확인을 요청합니다. "
+                        "확인 전에는 어떤 공유도 진행하지 않습니다.")
+            if cls == CLASS_MINIMAL:
+                excluded = ", ".join(scope.get("excluded_fields", [])) or "민감 정보"
+                return (f"{excluded}을(를) redact로 제외하고 {mode} 범위만 "
+                        f"{target}(으)로 공유합니다.")
+            return f"요청한 범위 그대로 {mode}로 {target}에 진행합니다."
         if cls == CLASS_LOCAL:
             return "외부로 보내지 않고 기기 내부 상태만 갱신했습니다."
         if cls == CLASS_INVALID:

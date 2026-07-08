@@ -1,4 +1,9 @@
-# 개선 백로그 (2026-07-08 밤, LB 0.8066 시점)
+# 개선 백로그 (2026-07-08, LB 0.8066 시점)
+
+## ⏭ 즉시 실행 (다음 슬롯): experiments/ 에 변형본 4종 사전 생성 완료
+`experiments/README.md`의 run sheet 참조. 제출 순서: **E5 → (Δ에 따라 E5X 또는 E1) → E1/E2**.
+실측치: E5=38 이동(amend26/ask8/hold4→proceed), E5X=38 이동(amend만, E5와 다른 집합; 104개 중 절-선점 제외 실제 도달 38), E2=14 이동(hold→amend; 58 추정이었으나 절이 선점), E1=user_response만 700 전부(완전 단일변수).
+추가 발견: `mixed_local_external_candidates` 177개는 **전부 session_share_policy=strict와 동시 출현** → 독립 신호 아닐 가능성 높음, 실험 우선순위 낮춤.
 
 목표: **0.8066 → 0.89 (잔여 0.083)**. 추정 구성: semantic 잔여 ~0.01 + transfer 잔여 ~0.05 + dev 잔여(0.17, 대부분 신호부재).
 원칙: 로컬 신호 소진 → **제출 1슬롯 = 단일변수 실험 1개** (하루 3슬롯 = 질문 3개). 개념 일반화·래칫·bake-off 규율 유지.

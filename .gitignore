@@ -3,3 +3,4 @@
 __pycache__/
 scratchpad/
 submission.csv
+experiments/*.csv
