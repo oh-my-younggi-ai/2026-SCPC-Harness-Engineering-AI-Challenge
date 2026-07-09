@@ -153,10 +153,13 @@ class FinalHarness:
             return CLASS_INVALID if "guardrail_ladder_signal" in types else CLASS_ASK
         # [Iter 023] record 값-조합 판별자 (dev 잔여 12 중 11 해소, 각 조합 dev 순도 100%).
         # ask-record 규칙 뒤에 두어 target_changed 등 기존 우선순위를 보존한다.
-        if "ambiguous_focal" in types and rm.get("share_boundary_update") == "local_update_boundary":
+        # [E6 실험: dev 근거가 전부 authority=internal_binding_confirmed 하위집단이므로
+        #  그 하위집단으로만 R1/R2/R2b를 좁힌다 — 이질 집단 transfer 실패 가설 검증]
+        e6_ok = ("E6" not in exp) or rm.get("dispatch_authority_check") == "internal_binding_confirmed"
+        if e6_ok and "ambiguous_focal" in types and rm.get("share_boundary_update") == "local_update_boundary":
             # focal이 모호해도 boundary가 '내부 갱신'이면 외부 공유가 아니다 (dev 2/2 local)
             return CLASS_LOCAL
-        if "guardrail_ladder_signal" in types \
+        if e6_ok and "guardrail_ladder_signal" in types \
                 and rm.get("ambiguous_target") == "approved_channel_or_visible_recipient":
             # guardrail 사다리의 최종 체크가 살아있는 승인 채널 → boundary가 결정
             if rm.get("share_boundary_update") == "redacted_external_boundary":
