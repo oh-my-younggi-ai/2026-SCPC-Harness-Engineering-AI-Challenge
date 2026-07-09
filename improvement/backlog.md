@@ -8,30 +8,20 @@
 확인된 레버 합계 추정: E1 +0.005~0.01, E7 ±0.01~0.02(방향 미지), 로컬 판별자 발굴 +0.005/건.
 **0.89 도달은 좁은 길** — E7이 양수(ask-target이 틀렸던 경우 +0.02)로 터지거나 history/clause 감사에서 실질 버그가 나와야 함. 남은 슬롯을 정보 최대화로 운용.
 
-## 내일(07-10) 3슬롯 계획
+## 내일(07-10) 3슬롯 계획 (v3 기준으로 갱신)
 
-### S1. E7 — ask-target named-fallthrough 되돌림 (37 task, user로 회귀)
-- Iter 023 구성요소 중 마지막 미검증 축. dev는 -0.031이지만 screening ask 분포가 다르면 역전 가능.
-- Δ>0: fallthrough 폐기(+점수 회수), Δ<0: 확증. 어느 쪽이든 037건의 방향 확정.
-- ⚠️ v2 코드 위에서 재생성 필요 (`SCPC_EXP=E7`).
+### S1. BASE v3 — Iter 028 플래그 스왑 (screening 207건 교정, dev 근거 45/46)
+- v2(0.8456) 대비 단일 측정. 플래그는 비게이트 축(policy 0.13×F1)이라 하방 위험 작음. 기대 +0.005~0.01.
 
-### S2. E1 — user_response 구체값+ontology 용어형 (700 task, semantic만)
-- 검증된 레버의 변형. v2 위에서 재생성됨 (`experiments/submission_E1.csv`).
+### S2. E7 — ask-target named-fallthrough 되돌림 (37 task, v3 위 재생성됨)
+- Iter 023 구성요소 중 마지막 미검증 축. Δ>0: fallthrough 폐기, Δ<0: 확증.
 
-### S3. (S1/S2 결과 보고) 승자 조합판 or E2(doctor_note 14건)
-- E7·E1 모두 양수면 조합판(효과 가산 — 접촉 축 분리 확인됨)이 최종 후보.
+### S3. E1 — user_response 변형 (semantic만, v3 위 재생성됨) 또는 승자 조합판
 
-## 로컬 작업 (제출 불요, 우선순위순)
-
-### L5. [신규 1순위] focal-history 서사 감사 (screening 237건, 하드게이트)
-- dev n=22 정확도 1.00이 10× 질량에 얹혀 있음. screening에서 designation 패턴이 **복수 객체에 매칭되거나 서수-결합이 애매한** task 수를 계수 → 모호 사례의 해석 규칙 강건화.
-- focal은 하드게이트: 5% 오류 = -0.015.
-
-### L6. [신규 2순위] clause 하위-답안 감사 (screening 432건, 62%)
-- 클래스는 골격이 정하지만 target/scope 세부는 클래스 기본값 — dev의 절-보유 task에서 기본값 이탈 사례(예: cl_local인데 target≠memory_store)를 마이닝해 조건 발굴. cl_redact(n=2)의 excluded_fields 다양성도 확인.
-
-### L4. 세션 carry-over 점검
-- `session["last_target"]`가 죽은 코드(쓰기 없음). dev target 잔여 miss 3건(a443f654, d6a5e982, fe98eb6a)이 세션 문맥 의존인지 확인.
+## 로컬 작업 — **07-09 밤 일괄 완료 (LOG Iter 028)**
+- ✅ L6: 중단-원천 플래그 스왑 발견·적용 (dev 17/17+28/29 → v3), cl_redact RC/RUC (2/2)
+- ✅ L5: focal-history 모호성 0 (음성 종결 — 로컬 개선 여지 없음)
+- ✅ L4: dev target 잔여 3건은 데이터-부재/미결정으로 종결 (attempts 기록)
 
 ## 동결 (재시도 금지 — attempts 참조)
 - ask mode 3분 (값-수준까지 판별자 없음 확정) · 클래스 잔여 1(0937, age_hint 분산 확인) · mixed_local_external_candidates (strict 종속) · **E5/E5X (컴플라이언스 보류, 코드 제출 전 토글 제거)** · E6 (기각: 광의 규칙 확증, -0.0132)
