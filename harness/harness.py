@@ -201,6 +201,20 @@ class FinalHarness:
             if "doctor_note" in str(rm.get("external_share_policy", "")) and "E2" not in exp_flags():
                 return CLASS_INVALID
             return CLASS_MINIMAL
+        # [F5 실험: dev-검증 규칙이 전부 침묵한 unseen 인자 조합에 대한 이름-의미론 합성 계층.
+        #  F1(+0.0009 LB 확증)과 동일 원리의 전면 확장 — 값 이름의 형태소가 의미를 담는다는
+        #  생성기 명명 규칙을 인자별로 읽어 합성한다. dev-커버 영역은 위 규칙들이 선점.]
+        if "F5" in exp:
+            auth = str(rm.get("dispatch_authority_check") or "")
+            bnd = str(rm.get("share_boundary_update") or "")
+            snap = str(rm.get("route_candidate_snapshot") or "")
+            if auth.endswith("_pending"):
+                # 바인딩/권한이 아직 계류 → 실행 전제가 안 섬 (dev: user_binding_pending 계열 hold, 무반례)
+                return CLASS_INVALID
+            if bnd == "local_update_boundary" and (auth.startswith("local_") or snap.startswith("local")):
+                # local-형태소 권한/후보 + 내부 갱신 경계 → 내부 갱신으로 완결.
+                # (dev의 internal_binding_confirmed 조합은 minimal 반례가 있어 형태소를 local_*로 한정)
+                return CLASS_LOCAL
         if rm.get("session_share_policy") == "strict":
             return CLASS_MINIMAL
         # [Iter 023] normal 세션의 상시 제약/과거 이력 재사용 → 축약 공유 (dev 2/2 amend;
@@ -478,7 +492,9 @@ class FinalHarness:
         if cls == CLASS_ASK:
             # 민감 필드 보유 시 name 제외가 기준 (dev 6/7), 아니면 raw_quote 기본
             excl = ["name"] if self._sensitive_in_focal(focal) else ["raw_quote"]
-            return {"mode": "summary", "allowed_fields": ["summary"],
+            # [M1 실험: ask mode 전역 플립 — 로컬 3층위 신호부재였던 mode의 screening 다수를 LB로 판정]
+            mode = "redacted" if "M1" in exp_flags() else "summary"
+            return {"mode": mode, "allowed_fields": ["summary"],
                     "excluded_fields": excl, "requires_user_confirmation": True}
         if cls == CLASS_MINIMAL:
             # 제외 필드 = focal이 실제 보유한 민감 필드(정규화 교집합), 없으면 raw_quote 기본

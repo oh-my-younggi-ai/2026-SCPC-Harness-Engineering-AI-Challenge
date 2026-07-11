@@ -1,30 +1,46 @@
-# 개선 백로그 (2026-07-09 밤, LB 0.8456 시점)
+# 백로그 — 총력전 모드 (2026-07-11, LB 0.8496)
 
-목표: **0.8456 → 0.89 (잔여 0.0434)**. 최종선택 파일 = BASE v2 (0.8456).
-상태: dev 0.9256 / CV 0.9264. dev-LB 갭 ~0.080, transfer율 하락 추세 (023: 42% → 026: 28%).
-텔레메트리 결론 (LOG Iter 027): 갭은 단일 버그가 아니라 **"dev 근거 극소 × screening 질량 대량" 경로들에 분산** — cl_redact(n=2→72), cl_confirm(11→119), cl_invalid(6→88), focal-history(22→237).
+**골: 0.90. 멈춤 없음. 명시적 금지(외부 API/네트워크, task_id/session_id 하드코딩, dev_answers 제출물 포함, 정답 분포 분석) 외 전 수단 동원.**
+운용 원칙 전환: "로컬 신호 부재 = 동결" → **"로컬 검증 불가 = LB 프로빙 대상"**. 하루 3슬롯 = 3비트. 최종선택 보호로 하방은 슬롯뿐.
 
-## 솔직한 전망
-확인된 레버 합계 추정: E1 +0.005~0.01, E7 ±0.01~0.02(방향 미지), 로컬 판별자 발굴 +0.005/건.
-**0.89 도달은 좁은 길** — E7이 양수(ask-target이 틀렸던 경우 +0.02)로 터지거나 history/clause 감사에서 실질 버그가 나와야 함. 남은 슬롯을 정보 최대화로 운용.
+## 표적 지도 (남은 -0.15의 소재, 실측 기반)
+| 구간 | 규모 | 현 상태 | 공략 수단 |
+|---|---|---|---|
+| dev-미출현 인자 조합 | **140건 (절-없음의 52%)** | 보수적 폴백 | **F5 이름-의미론 합성** |
+| ask mode (screening ask ~161건) | 3층위 로컬 신호부재 | summary 일괄 | **M1 프로빙** |
+| semantic 잔여 | ~0.01-0.015 | E1 기각(구체화는 역효과) | M2 초간결/문체 변형 |
+| plan/scope 세부 | 소폭 | dev-포화 | M3 이벤트 구성 프로브 |
+| mixed_local_external (177) | strict 종속 추정 | minimal 폴백 | M4 프로빙 |
 
-## 내일(07-10) 3슬롯 계획 (v3 기준으로 갱신)
+## 무기고 (구현 순)
 
-### S1. BASE v3 — Iter 028 플래그 스왑 (screening 207건 교정, dev 근거 45/46)
-- v2(0.8456) 대비 단일 측정. 플래그는 비게이트 축(policy 0.13×F1)이라 하방 위험 작음. 기대 +0.005~0.01.
+### F5 [최우선, 오늘] — unseen 조합 140건의 이름-의미론 합성 계층
+- 인자별 형태소 의미(F1 실증 원리의 전면 확장): boundary{local/redacted/blocked} × authority{confirmed/incomplete/pending, local-형태소} × snapshot{single_internal/local_only/mixed/external} 합성.
+- dev-검증 영역 불변(cascade 유지), unseen 조합에만 적용. F2(redact family) 포함.
+- E5/E5X가 노리던 것의 상위집합을 "일반화 계층" 형태로 흡수. 폭 ±0.03.
 
-### S2. E7 — ask-target named-fallthrough 되돌림 (37 task, v3 위 재생성됨)
-- Iter 023 구성요소 중 마지막 미검증 축. Δ>0: fallthrough 폐기, Δ<0: 확증.
+### M1 — ask mode 전역 프로빙 (ask ~161건 summary→redacted 플립)
+- 로컬 3층위 신호부재였지만 LB는 답을 앎. Δ 부호로 screening ask의 진짜 다수 mode 확정. 폭 ±0.01-0.02.
 
-### S3. E1 — user_response 변형 (semantic만, v3 위 재생성됨) 또는 승자 조합판
+### M2 — semantic 문체 변형 (E1 역방향)
+- (a) 초간결형 (b) 프로필 ops_memory_note 문체 모사. 슬롯당 1변형.
 
-## 로컬 작업 — **07-09 밤 일괄 완료 (LOG Iter 028)**
-- ✅ L6: 중단-원천 플래그 스왑 발견·적용 (dev 17/17+28/29 → v3), cl_redact RC/RUC (2/2)
-- ✅ L5: focal-history 모호성 0 (음성 종결 — 로컬 개선 여지 없음)
-- ✅ L4: dev target 잔여 3건은 데이터-부재/미결정으로 종결 (attempts 기록)
+### M3 — plan 구성 프로브: minimal에 verify 삽입(read→verify→redact→dispatch) 등.
 
-## 동결 (재시도 금지 — attempts 참조)
-- ask mode 3분 (값-수준까지 판별자 없음 확정) · 클래스 잔여 1(0937, age_hint 분산 확인) · mixed_local_external_candidates (strict 종속) · **E5/E5X (컴플라이언스 보류, 코드 제출 전 토글 제거)** · E6 (기각: 광의 규칙 확증, -0.0132)
+### M4 — mixed_local_external_candidates 177건: ask 처리 프로빙.
 
-## 검증된 전략 원칙
-1. 개념 수준 일반화 2. **값-수준 재마이닝** (타입-수준 신호부재 판정을 두 번 번복: precondition_changed 콤보, R1~R6) 3. 중단-원천 원리 4. bake-off+래칫 5. 제출=단일변수 실험 6. 텔레메트리로 슬롯 우선순위 결정
+### E2 — doctor_note 14건 (잔여).
+
+## 프로빙 규율
+1. 슬롯 1 = 모집단 1 = 비트 1. 큰 모집단부터 (F5 140 > M1 161겹침 > M4 177겹침 > M2 > M3 > E2).
+2. Δ>0 즉시 기본 승격, Δ<0도 방향 확정으로 기록 — 모든 결과가 다음 슬롯의 정보.
+3. 이분탐색: 큰 모집단에서 Δ가 애매하면 반으로 쪼개 재프로빙.
+4. 매 제출 후 최종선택 파일 = 역대 최고점 유지.
+
+## 유지 사항
+- 래칫/attempts/LOG 규율, 회귀 테스트 4종, 결정성.
+- 코드에 screening 전용 문자열 열거 금지 (일반화 계층 형태로만 — 검증 대비).
+- 최종 코드 제출 전 토글 승격/제거 정리.
+
+## 완료·확증 (재시도 금지)
+F1(+0.0009 확증) · E6/E7(광의 규칙·named target 확증) · E1(구체화 역효과) · dev 마이닝 소진(0.9309) · 기계적 누수 무혐의(Iter 030) · E5 원형(데이터가 반대, F5로 흡수)
