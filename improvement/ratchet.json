@@ -6,5 +6,6 @@
   "harness/tests/test_control_ask.py",
   "harness/tests/test_class_decoder.py",
   "harness/tests/test_history_focal.py"
- ]
+ ],
+ "lb_high_water": 0.8496
 }

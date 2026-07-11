@@ -531,3 +531,16 @@ ask-target named-fallthrough(중단-원천 원리의 ask 확장)가 screening에
 - F2: R2(guardrail×approved_channel×redacted_*) family → 실도달 **6건** amend→proceed (상류 선점으로 예상 45→6)
 - dev 0.9309 완전 불변 (family 구성원이 dev에 없음), 테스트 4/4
 - 슬롯 계획: S1=F1 → Δ 보고 S2=F2 or E2
+
+---
+
+## 리더보드 실측 (F1 제출, 07-11 슬롯1): **0.8496** (+0.0009, 신기록) → F1 KEEP
+
+형태소 값-family 가설이 LB에서 확증 (36건 세부 보정만으로 +0.0009). F1을 기본 승격 예정.
+
+## Iter 034 — E5 재평가: 데이터가 반대함 (합법성과 별개)
+
+F3(family 재유도, 무모호성 조건) = screening 0건 → **E5의 28건은 전부 모호성 마커 보유**. 그런데 그 최근접 dev 유사체(ambiguous_target × local_update_boundary × internal_binding_confirmed)의 정답은 **minimal** (25d2 등) = 현행 분류 그대로. E5는 "값 이름의 local_ 접두사가 모호성 신호를 뒤집는다"는 베팅인데:
+- ambiguous_focal 계열은 R1+E6로 이미 LB 확증되어 현행 코드가 local로 처리 중 (E5의 몫 아님)
+- ambiguous_target 계열(E5의 실제 증분)은 dev 유사체가 반대 방향
+→ E5 기대값은 동전던지기 이하로 하향. **합법성 이전에 데이터가 지지하지 않음.** E5X(104)는 dev-근거 있는 규칙들을 더 광범위하게 뒤집으므로 더 나쁨. candidates_after_authority(207)는 dev 앵커 전무.
