@@ -220,6 +220,9 @@ class FinalHarness:
         #  dev 앵커 없음(값 부재) — 이름 의미론 단독 베팅, 절-없는 fallback 구간에만 적용]
         if "M4" in exp and str(rm.get("route_candidate_snapshot") or "").startswith("mixed"):
             return CLASS_ASK
+        # [F6 실험: local-형태소 권한 단독 → 처리 권한이 local 범위 → 내부 갱신 (E5X의 family형)]
+        if "F6" in exp and str(rm.get("dispatch_authority_check") or "").startswith("local_"):
+            return CLASS_LOCAL
         if rm.get("session_share_policy") == "strict":
             return CLASS_MINIMAL
         # [Iter 023] normal 세션의 상시 제약/과거 이력 재사용 → 축약 공유 (dev 2/2 amend;
@@ -579,6 +582,11 @@ class FinalHarness:
             requires_conf = True
         # [Iter 028] 절-유래 amend(축약 지시가 최신)는 실행 전 확인 필요 (dev 2/2 vs 0/22)
         if cls == CLASS_MINIMAL and clause and any(k in clause for k in CLAUSE_REDACT):
+            requires_conf = True
+        # [F7 실험: 후보가 권한 결정 이후에 나열됨(candidates_after_authority) → 바인딩이 새 후보를
+        #  커버하는지 미확인 → 확인 요구. dev의 역순 값(authority_after_candidates→RC)의 대칭 해석]
+        if "F7" in exp_flags() and rm.get("route_binding_order") == "candidates_after_authority" \
+                and cls != CLASS_INVALID:
             requires_conf = True
         return {
             "risk_flags": sorted(flags),
