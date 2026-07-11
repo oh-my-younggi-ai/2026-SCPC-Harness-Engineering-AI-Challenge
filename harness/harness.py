@@ -139,6 +139,10 @@ class FinalHarness:
             if any(k in clause for k in CLAUSE_LOCAL):
                 return CLASS_LOCAL
             if any(k in clause for k in CLAUSE_INVALID):
+                # [C1 실험: '추가 질의 없이 수행하면 위험' 계열은 멈춤이 아니라 질의 요구 —
+                #  invalid 문구 중 유일하게 질의를 명시하는 클러스터를 ask로 재배정]
+                if "C1" in exp_flags() and ("질의" in clause or "질문" in clause):
+                    return CLASS_ASK
                 return CLASS_INVALID
             if any(k in clause for k in CLAUSE_CONFIRM):
                 return CLASS_ASK
