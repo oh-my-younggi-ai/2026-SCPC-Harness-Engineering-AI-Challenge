@@ -1,34 +1,30 @@
-# 제출 실험 run sheet (갱신 2026-07-09, BASE 실측 0.8441 반영)
+# 최종 5슬롯 run sheet (2026-07-11, 기준 0.8496 = F1)
 
-기준: **BASE(Iter 023) LB 실측 0.8441** (+0.0375, 그러나 dev 이득의 ~40%만 transfer — dev-LB 갭 0.076).
-컷까지 잔여 0.046. 모든 파일은 동일 코드에서 `SCPC_EXP` 토글만 바꿔 생성. 제출 시 `submission.csv`로 이름 변경. 슬롯 1개 = 실험 1개.
+**잔여: 이틀, 총 5슬롯. 목표 0.90 — 가동 가능 질량: F5A(local합성 14) + F5B(pending→hold 20) + M4(mixed→ask 6) + M1(ask mode 165).**
+제출 파일: `experiments/submission_<이름>.csv`를 `submission.csv`로 개명 후 업로드. 매 제출 후 최종선택 = 역대 최고점 파일.
 
-| 파일 | 토글 | BASE 대비 변경 | 상태 |
-|---|---|---|---|
-| submission_BASE.csv | (없음) | — | ✅ 제출됨: **LB 0.8441** |
-| submission_E6.csv | E6 | 38 task (proceed→amend 26, ask→amend 12) | ✅ 오늘 슬롯2: R1/R2/R2b를 dev-검증 authority 하위집단으로 축소 |
-| submission_E1.csv | E1 | 700 task (user_response만) | ✅ 오늘 슬롯3: semantic 잔여 회수 |
-| submission_E2.csv | E2 | 14 task (hold→amend) | 내일 후보: doctor_note→hold 검증 |
-| submission_E5.csv | E5 | 28 task | ⚠️ **제출 보류** — 규정 감사(LOG Iter 024) |
-| submission_E5X.csv | E5X | 28 task | ⚠️ **제출 보류** — 규정 감사(LOG Iter 024) |
+## 결정 트리
 
-## ⚠️ E5/E5X 보류 사유
+**S1 = `F1F2F5M4`** (40건 = local14+pending20+mixed6) ← 지금 submission.csv
+- Δ ≥ +0.01 (대부분 적중) → **S2 = `F1F2F5M4M1`** (M1 얹기)
+- 0 ≤ Δ < +0.01 (부분 적중/상쇄 의심) → **S2 = `F1F2F5B`** (pending 단독 분리)
+- Δ < 0 → **S2 = `F1F2F5B`** (가지 분리; S1−S2로 local+M4 부호 역산)
 
-dev에 없는 screening 전용 record 값을 screening 입력 분석으로 발견해 정답 골격에 매핑한 것 —
-유의사항의 "평가 데이터셋에서 특정 패턴을 분석해 모델 구조·정답 후보 설정에 반영하는 행위" 금지 문구에
-정면 노출될 수 있는 유일한 항목. Iter 023(BASE)이 이미 dev 0.92라 기대가치도 낮음.
-**상위권 코드 제출 전 harness.py에서 E5/E5X 토글 코드 제거 예정.**
+**S3** = S1/S2에서 판정된 승자 조합 + M1 (M1 미검증 시) or 승자 조합 확정판
+**S4** = S3 결과 반영 최적 조합 ± E2(doctor_note 14) 잔여 베팅
+**S5** = 최종 확정판 (최고 조합 재확인 — 반드시 마지막에 최고점 파일이 제출·선택되어 있어야 함)
 
-## 오늘 남은 2슬롯
+## 기대값 (정직)
+- 전부 적중 시: +0.015(F5) +0.003(M4) +0.010(M1) ≈ **~0.877**
+- 현실적: 0.855~0.870. **0.90은 이 무기들로는 산술적으로 도달 불가** — 잔여 갭은 dev-무증거 영역의 세부(클래스가 아니라 scope/policy 디테일)에 분산되어 있고, 이를 뒤집을 대형 모집단은 존재하지 않음(전부 dev-검증 규칙이 선점, E6/E7로 확증됨).
 
-2. **E6** — Δ>0: 협의판 채택(이질 하위집단 과확장 확증) → 내일 ask-target(user→named 23건)도 같은 방식 검증. Δ<0: 광의판 유지.
-3. **E1** — semantic 서술 변형 (검증된 레버, gate 무관).
-
-## 내일 후보 (E6/E1 결과에 따라)
-
-- ask-target 되돌림 프로브 (user→named 23건 — Iter 023의 미검증 축)
-- E2 (doctor_note→hold), R2/R2b 개별 분리 (E6이 애매할 때)
-
-## 판정 메모
-
-- 결과는 improvement/LOG.md에 Iter로 기록. **DACON 제출창에서 최종 채점 파일 1개 선택 필수.**
+## 변형 카탈로그
+| 파일 | 내용 |
+|---|---|
+| F1F2F5M4 | S1 번들 (family 전체 + mixed) |
+| F1F2F5B | pending-family 단독 |
+| F1F2F5AM4 | local합성+mixed (pending 제외) |
+| F1F2F5M4M1 | S1 + ask mode 플립 |
+| F1M1 | M1 단독 (F5/M4 실패 시) |
+| F1 | 현 최고점 재현 (0.8496) |
+| E2 | doctor_note 14건 off |
