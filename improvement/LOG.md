@@ -520,3 +520,14 @@ ask-target named-fallthrough(중단-원천 원리의 ask 확장)가 screening에
 구체값+ontology 용어형 서술이 현행 클래스-정렬 서술보다 나쁨 — 참조 응답은 간결한 판단 서술에 가깝다는 정보. **semantic 잔여 소진 판정** (변형 (b) 사유-키워드 강화도 같은 방향이므로 시도 가치 하락). 07-10 슬롯 소진: 0.8487(BASE v4, 최종선택 유지) / 0.8293(E7) / 0.8431(E1).
 
 **확실 레버 전부 소진 확정.** 남은 것: E5 결정(사용자 리스크 판단), E2(±0.005), 마무리 작업(토글 제거·README·최종 파일 선택).
+
+---
+
+## Iter 033 — 2026-07-11 — 값-family 형태소 일반화 계층 (F1/F2 토글 준비)
+
+역발상: "정확 값 일치"를 규칙 2-4가 요구하는 **일반화**로 뒤집음 — dev 어휘의 형태소가 의미를 담는다는 관찰(`*_confirmed`=권한 충족, `redacted_*`=축약 경계; dev 근거 internal_binding_confirmed/redacted_external_boundary)에서 값-family 판정 함수(`authority_confirmed`/`boundary_redacted`)를 유도. **코드는 screening 전용 문자열을 열거하지 않음** — E5(값→클래스 lookup)와 메커니즘이 다른 일반화 계층. 단, dev에 family의 다른 구성원이 없어 dev로 방향 검증은 불가(정직한 한계).
+
+- F1: pc플래그/RC/clarify_precondition 콤보의 authority를 family로 → screening **36건** 세부 보정 (클래스 불변, 하방 제한)
+- F2: R2(guardrail×approved_channel×redacted_*) family → 실도달 **6건** amend→proceed (상류 선점으로 예상 45→6)
+- dev 0.9309 완전 불변 (family 구성원이 dev에 없음), 테스트 4/4
+- 슬롯 계획: S1=F1 → Δ 보고 S2=F2 or E2

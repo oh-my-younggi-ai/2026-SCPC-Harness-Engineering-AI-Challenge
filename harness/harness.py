@@ -98,6 +98,27 @@ def exp_flags() -> frozenset[str]:
     return frozenset(filter(None, os.environ.get("SCPC_EXP", "").split(",")))
 
 
+def authority_confirmed(rm: dict[str, Any], fam: bool) -> bool:
+    """권한 충족 판정. fam=True면 dev 어휘의 형태소 일반화(*_confirmed = 충족)를 적용.
+
+    dev 근거: internal_binding_confirmed(충족) vs authority_incomplete/user_binding_pending(미충족)
+    — 접미사가 의미를 담는 명명 규칙이므로 unseen 값에도 형태소로 일반화한다 (규칙 2-4의
+    '일반화된 하니스' 요구에 따른 값-family 계층; 특정 값 문자열을 열거하지 않음).
+    """
+    v = rm.get("dispatch_authority_check")
+    if fam:
+        return isinstance(v, str) and v.endswith("_confirmed")
+    return v == "internal_binding_confirmed"
+
+
+def boundary_redacted(rm: dict[str, Any], fam: bool) -> bool:
+    """축약(redact) 경계 판정. fam=True면 redacted_* 형태소 일반화."""
+    v = rm.get("share_boundary_update")
+    if fam:
+        return isinstance(v, str) and v.startswith("redacted")
+    return v == "redacted_external_boundary"
+
+
 class FinalHarness:
     def __init__(self) -> None:
         self.slm = FixedSLMClient()
@@ -162,7 +183,8 @@ class FinalHarness:
         if e6_ok and "guardrail_ladder_signal" in types \
                 and rm.get("ambiguous_target") == "approved_channel_or_visible_recipient":
             # guardrail 사다리의 최종 체크가 살아있는 승인 채널 → boundary가 결정
-            if rm.get("share_boundary_update") == "redacted_external_boundary":
+            # [F2 실험: redacted_* 형태소 family로 일반화]
+            if boundary_redacted(rm, "F2" in exp):
                 return CLASS_OTHER   # dev 2/2 proceed
             if rm.get("share_boundary_update") == "local_update_boundary":
                 return CLASS_ASK     # dev 1/1 ask
@@ -522,8 +544,9 @@ class FinalHarness:
             flags.add("sensitive_content")
         # [Iter 026] precondition_changed ⟺ single_internal_candidate × internal_binding_confirmed
         # (dev 24/24 완전 판별 — 값-수준 재마이닝으로 발견, 이전 '신호 부재' 판정 번복)
+        # [F1 실험: *_confirmed 형태소 family로 일반화]
         if rm.get("route_candidate_snapshot") == "single_internal_candidate" \
-                and rm.get("dispatch_authority_check") == "internal_binding_confirmed":
+                and authority_confirmed(rm, "F1" in exp_flags()):
             flags.add("precondition_changed")
         violations = ["precondition_changed_ignored"] if cls == CLASS_INVALID else []
         # [Iter 026] 비-ask requires_confirmation: proceed계열×authority_after_candidates (dev 7/8),
@@ -558,8 +581,9 @@ class FinalHarness:
             ]
         if cls == CLASS_ASK:
             # [Iter 026] single_internal×internal_binding = '전제 변경' 시나리오 마커 (dev 6/6 vs 0/20)
+            # [F1 실험: *_confirmed 형태소 family로 일반화]
             if rm.get("route_candidate_snapshot") == "single_internal_candidate" \
-                    and rm.get("dispatch_authority_check") == "internal_binding_confirmed":
+                    and authority_confirmed(rm, "F1" in exp_flags()):
                 return [
                     {"verb": "read", "target": focal_id, "args": {"purpose": "clarify_precondition"}},
                     {"verb": "clarify", "target": "user", "args": {"reason": "precondition_changed"}},
