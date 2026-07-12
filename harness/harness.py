@@ -663,6 +663,18 @@ class FinalHarness:
                 return (f"{excluded}을(를) redact로 제외하고 {mode} 범위만 "
                         f"{target}(으)로 공유합니다.")
             return f"요청한 범위 그대로 {mode}로 {target}에 진행합니다."
+        # [M2 실험: 생성기 내부 노트 문체(ops_memory_note의 '~했고 ~는 제외했다' 평서 서술) 모사]
+        if "M2" in exp_flags():
+            if cls == CLASS_LOCAL:
+                return "외부 전송은 하지 않았고 기기 내부 상태 갱신으로 완료했다."
+            if cls == CLASS_INVALID:
+                return "이전 허용의 전제가 최신 상태에서 무효화되어 실행을 보류했다."
+            if cls == CLASS_ASK:
+                return "대상과 범위가 확정되지 않아 진행 전에 사용자 확인을 요청했다."
+            if cls == CLASS_MINIMAL:
+                excluded = ", ".join(scope.get("excluded_fields", [])) or "민감 세부값"
+                return f"{target}에 요약 범위로만 공유했고 {excluded}은 제외했다."
+            return f"요청 범위 그대로 {target}에 처리했다."
         if cls == CLASS_LOCAL:
             return "외부로 보내지 않고 기기 내부 상태만 갱신했습니다."
         if cls == CLASS_INVALID:
