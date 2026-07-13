@@ -10,6 +10,16 @@
 (dev 로컬 0.9309 / 5-fold 세션 CV 0.9317 ± 0.019, 재현 결정적 — 동일 입력 MD5 동일)
 ```
 
+## 글
+
+| 글 | 내용 |
+|---|---|
+| [1탄: AI한테 해커톤을 시켜봤다](https://velog.io/@giyoul/1%ED%83%84-AI%ED%95%9C%ED%85%8C-%ED%95%B4%EC%BB%A4%ED%86%A4%EC%9D%84-%EC%8B%9C%EC%BC%9C%EB%B4%A4%EB%8B%A4-%EC%82%BC%EC%84%B1-SCPC-2026-AI-Challenge-DACON) | 대회 회고 전반부 — 하니스 설계, 자동 개선 루프, AI의 실패 패턴 관찰 |
+| [2탄: AI한테 해커톤을 시켜봤다](https://velog.io/@giyoul/2%ED%83%84-AI%ED%95%9C%ED%85%8C-%ED%95%B4%EC%BB%A4%ED%86%A4%EC%9D%84-%EC%8B%9C%EC%BC%9C%EB%B4%A4%EB%8B%A4-%EC%82%BC%EC%84%B1-SCPC-2026-AI-Challenge-DACON) | 대회 회고 후반부 — 정체 돌파, 값-수준 재마이닝, AI-인간 분업 |
+| [하네스는 어디까지 쌓아야 하는가](https://velog.io/@giyoul/%ED%95%98%EB%84%A4%EC%8A%A4%EB%8A%94-%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80-%EC%8C%93%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94%EA%B0%80) | 에세이 — 하니스의 역U자 곡선, 조종이 아니라 현가장치 (레포 내 원문: [`HARNESS_LEVELS.md`](HARNESS_LEVELS.md)) |
+
+레포 내 전체 회고 원문은 [`RETROSPECTIVE.md`](RETROSPECTIVE.md).
+
 ## 문제 구조
 
 - 입력: task JSON (프롬프트, 기기 상태 objects/records, 대화 이력, 세션 메모리) 700건
